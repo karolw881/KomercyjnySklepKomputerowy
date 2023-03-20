@@ -13,13 +13,13 @@ const Categories = () => {
 
     const [categories, setCategory] = useState([
         { title: 'Komputery i laptopy', icon: <BsLaptop/>,link: "/Komputery" ,id: 1},
-        { title: 'Smartfony', icon: <FiSmartphone/>,link: "/Komputery" ,id: 2},
-        { title: 'Gaming', icon: <TfiGame/>,link: "/Komputery" ,id: 3},
-        { title: 'Podzespoły koputerowe', icon: <GiProcessor/>,link: "/Komputery" ,id: 4},
-        { title: 'Urządzenia peryferyjne', icon: <AiOutlinePrinter/>,link: "/Komputery" ,id: 5},
-        { title: 'Telewizory', icon: <SlScreenDesktop/>,link: "/Komputery" ,id: 6},
-        { title: 'Akcesoria', icon: <MdCable/>,link: "/Komputery" ,id: 7},
-        { title: 'Promocje', icon: <CiPercent/>,link: "/Komputery" ,id: 8},
+        { title: 'Smartfony', icon: <FiSmartphone/>,link: "/Smartfony" ,id: 2},
+        { title: 'Gaming', icon: <TfiGame/>,link: "/Gaming" ,id: 3},
+        { title: 'Podzespoły koputerowe', icon: <GiProcessor/>,link: "/Podzespoly" ,id: 4},
+        { title: 'Urządzenia peryferyjne', icon: <AiOutlinePrinter/>,link: "/Peryferia" ,id: 5},
+        { title: 'Telewizory', icon: <SlScreenDesktop/>,link: "/Telewizory" ,id: 6},
+        { title: 'Akcesoria', icon: <MdCable/>,link: "/Akcesoria" ,id: 7},
+        { title: 'Promocje', icon: <CiPercent/>,link: "/Promocje" ,id: 8},
     ]);
 
 

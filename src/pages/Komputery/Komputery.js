@@ -1,5 +1,5 @@
-import NavBar from "../Index-components/Navbar";
-import Categories from "../Index-components/Categories";
+import NavBar from "../../Index-components/Navbar";
+import Categories from "../../Index-components/Categories";
 
 const komputery = () => {
     return ( 

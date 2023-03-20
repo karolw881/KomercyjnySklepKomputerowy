@@ -12,6 +12,12 @@ body {
   }
 a {
   text-decoration: none;
+  transition: transform 0.2s ease-out;
+}
+
+a:hover {
+  transform: scale(1.2);
+  
 }
 
   .navbar {

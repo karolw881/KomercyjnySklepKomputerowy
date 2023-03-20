@@ -3,6 +3,7 @@ import banner1 from '../images/banner1.png'
 import banner2 from '../images/banner2.png'
 import banner3 from '../images/banner3.png'
 import banner4 from '../images/banner4.jpg'
+import banner5 from '../images/banner5.jpg'
 import Button from '@mui/material/Button';
 
 
@@ -12,7 +13,8 @@ const Banner = () => {
     { image: banner1, alt: 'Banner 1' },
     { image: banner2, alt: 'Banner 2' },
     { image: banner3, alt: 'Banner 3' },
-    { image: banner4, alt: 'Banner 4' }
+    { image: banner4, alt: 'Banner 4' },
+    { image: banner5, alt: 'Banner 5' }
   ];
 
   useEffect(() => {

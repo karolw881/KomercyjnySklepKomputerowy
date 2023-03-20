@@ -36,6 +36,7 @@ function App() {
                 <Route path="/Lista" element={<Lista/>}/>
                 <Route path="/Koszyk" element={<Koszyk/>}/>
             </Routes>
+            
         
         </>
     );

@@ -6,7 +6,7 @@ const ProductList = ({ products }) => {
     return (
         <>
             {products.map((product) => (
-                <Grid item width={300} height={300} border="1px solid blue">
+                <Grid item width="calc(100% / 4)" height="calc(100% / 2)" border="1px solid blue" margin="10px 20px">
                     <Box>{product.name}</Box>
                 </Grid>
             ))}

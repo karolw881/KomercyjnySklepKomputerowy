@@ -1,15 +1,8 @@
 import ProductList from "./ProductList";
 import { useState } from "react";
 import {BsLaptop} from 'react-icons/bs'
-import {FiSmartphone} from 'react-icons/fi'
-import {TfiGame} from 'react-icons/tfi'
-import {GiProcessor} from 'react-icons/gi'
-import {AiOutlinePrinter} from 'react-icons/ai'
-import {SlScreenDesktop} from 'react-icons/sl'
-import {MdCable} from 'react-icons/md'
-import {CiPercent} from 'react-icons/ci'
 import Grid from '@mui/material/Grid'; // Grid version 1
-import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
+
 
 
 const Products = () => {
@@ -24,7 +17,7 @@ const Products = () => {
     ]);
 
     return ( 
-        <Grid container spacing={2} maxHeight={900} maxWidth={900} margin="auto">
+        <Grid container spacing={2} maxHeight={900} maxWidth={1202} margin="auto" textAlign="center" border="1px solid red">
             <ProductList products={products}/>
         </Grid>
      );

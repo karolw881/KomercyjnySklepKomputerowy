@@ -10,6 +10,10 @@ body {
     font-family: "Quicksand";
     color: #d3cccc;
   }
+a {
+  text-decoration: none;
+}
+
   .navbar {
     padding: 20px 20px 5px 20px;
     display: flex;
@@ -109,20 +113,19 @@ body {
 .navbar-sub .category-item {
   display: flex;
   flex-direction: row;
-  margin-left: 2.5em;
-  
+  margin-left: 4em;
+  justify-content: center;
 }
 
 .navbar-sub .category-icon {
   text-align: center;
-  margin-right: 0.2em;
   font-size: 1.5em;
 }
 
 .navbar-sub .category-title {
   max-width: 4.5vw;
   font-size: 0.8em;
-  
+  text-align: center;
 }
 
 .banner {

@@ -25,7 +25,6 @@ const Products = () => {
 
     return ( 
         <Grid container spacing={2} maxHeight={900} maxWidth={900} margin="auto">
-            
             <ProductList products={products}/>
         </Grid>
      );

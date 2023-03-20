@@ -1,23 +1,15 @@
 import '../Index-css/Products.css'
 import Grid from '@mui/material/Grid'; // Grid version 1
-import Grid2 from '@mui/material/Unstable_Grid2';
-
-
-
-
-
+import {Box} from '@mui/material';
 
 const ProductList = ({ products }) => {
     return (
         <>
-
             {products.map((product) => (
-
-                <Grid container spacing={2} columns={16}>
-                    
+                <Grid item >
+                    <Box>{product.name}</Box>
                 </Grid>
             ))}
-
         </>
 
     );

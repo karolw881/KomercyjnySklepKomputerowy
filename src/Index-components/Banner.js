@@ -36,7 +36,7 @@ const Banner = () => {
       <img className='banner-item'  src={banners[currentBanner].image} alt={banners[currentBanner].alt} />
       <div className="arrow right-arrow" onClick={nextBanner}></div>
     </div>
-    
+
     </>
   );
 };

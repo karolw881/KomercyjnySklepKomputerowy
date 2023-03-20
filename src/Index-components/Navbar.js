@@ -37,21 +37,21 @@ const NavBar = () => {
                     <BsSearch/>
                 </div>
 
-                <Link to="/pomoc">
+                <Link to="/Pomoc">
                     <div className="flex-container">
                         <div className='nav-icon'><TfiHeadphoneAlt /></div>
                         <div className='nav-option'>Pomoc i kontakt</div>
                     </div>
                 </Link>
-                <Link to="/konto"><div className="flex-container">
+                <Link to="/Konto"><div className="flex-container">
                     <div className='nav-icon'><MdAccountCircle /></div>
                     <div className='nav-option'>Konto</div>
                 </div></Link>
-                <Link to="/lista"><div className="flex-container">
+                <Link to="/Lista"><div className="flex-container">
                     <div className='nav-icon'><HiClipboardList /></div>
                     <div className='nav-option'>Twoje listy</div>
                 </div></Link>
-                <Link to="/koszyk"><div className="flex-container">
+                <Link to="/Koszyk"><div className="flex-container">
                     <div className='nav-icon'><BsFillCartFill /></div>
                     <div className='nav-option'>Koszyk</div>
                 </div></Link>

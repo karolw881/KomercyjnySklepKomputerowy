@@ -6,8 +6,13 @@ import Podzespoly from './pages/Podzespoly/Podzespoly';
 import Peryferia from './pages/Peryferia/Peryferia';
 import Telewizory from './pages/Telewizory/Telewizory';
 import Akcesoria from './pages/Akcesoria/Akcesoria';
-import { Route, Routes } from 'react-router-dom';
 import Promocje from './pages/Promocje/Promocje';
+import Pomoc from './pages/Pomoc/Pomoc';
+import Konto from './pages/Konto/Konto';
+import Lista from './pages/Lista/Lista';
+import Koszyk from './pages/Koszyk/Koszyk';
+import { Route, Routes } from 'react-router-dom';
+
 
 
 function App() {
@@ -26,6 +31,10 @@ function App() {
                 <Route path="/Telewizory" element={<Telewizory/>}/>
                 <Route path="/Akcesoria" element={<Akcesoria/>}/>
                 <Route path="/Promocje" element={<Promocje/>}/>
+                <Route path="/Pomoc" element={<Pomoc/>}/>
+                <Route path="/Konto" element={<Konto/>}/>
+                <Route path="/Lista" element={<Lista/>}/>
+                <Route path="/Koszyk" element={<Koszyk/>}/>
             </Routes>
         
         </>

@@ -12,14 +12,14 @@ import {CiPercent} from 'react-icons/ci'
 const Categories = () => {
 
     const [categories, setCategory] = useState([
-        { title: 'Komputery i laptopy', icon: <BsLaptop/>,id: 1},
-        { title: 'Smartfony', icon: <FiSmartphone/>,id: 2},
-        { title: 'Gaming', icon: <TfiGame/>,id: 3},
-        { title: 'Podzespoły koputerowe', icon: <GiProcessor/>,id: 4},
-        { title: 'Urządzenia peryferyjne', icon: <AiOutlinePrinter/>,id: 5},
-        { title: 'Telewizory', icon: <SlScreenDesktop/>,id: 6},
-        { title: 'Akcesoria', icon: <MdCable/>,id: 7},
-        { title: 'Promocje', icon: <CiPercent/>,id: 8},
+        { title: 'Komputery i laptopy', icon: <BsLaptop/>,link: "/Komputery" ,id: 1},
+        { title: 'Smartfony', icon: <FiSmartphone/>,link: "/Komputery" ,id: 2},
+        { title: 'Gaming', icon: <TfiGame/>,link: "/Komputery" ,id: 3},
+        { title: 'Podzespoły koputerowe', icon: <GiProcessor/>,link: "/Komputery" ,id: 4},
+        { title: 'Urządzenia peryferyjne', icon: <AiOutlinePrinter/>,link: "/Komputery" ,id: 5},
+        { title: 'Telewizory', icon: <SlScreenDesktop/>,link: "/Komputery" ,id: 6},
+        { title: 'Akcesoria', icon: <MdCable/>,link: "/Komputery" ,id: 7},
+        { title: 'Promocje', icon: <CiPercent/>,link: "/Komputery" ,id: 8},
     ]);
 
 

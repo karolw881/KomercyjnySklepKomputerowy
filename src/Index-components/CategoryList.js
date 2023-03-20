@@ -1,5 +1,5 @@
 import '../Index-css/Navbar.css'
-
+import { Link } from 'react-router-dom';
 
 
 const CategoryList = ({ categories }) => {
@@ -7,12 +7,14 @@ const CategoryList = ({ categories }) => {
         <div className='category-list'>
             {categories.map((category) => (
                 <div className="category-item">
+                    <Link to={category.link}>
                     <div className='category-icon'>
                         {category.icon}
                     </div>
                     <div className='category-title'>
                         {category.title}
                     </div>
+                    </Link>
                 </div>
             ))}
         </div>

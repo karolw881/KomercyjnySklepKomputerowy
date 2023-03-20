@@ -7,7 +7,7 @@ import { BsFillCartFill } from 'react-icons/bs'
 import { BsSearch} from 'react-icons/bs'
 import {FaIcon} from 'react-icons/fa'
 import logo from '../images/logo.png'
-
+import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
@@ -19,7 +19,7 @@ const NavBar = () => {
             </div>
 
             <div className="logo-title">
-                <h1><a href="/"> X-kom </a></h1>
+                <h1><Link to="/"> X-kom </Link></h1>
             </div>
             
 

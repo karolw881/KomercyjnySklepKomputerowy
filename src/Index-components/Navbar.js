@@ -37,24 +37,24 @@ const NavBar = () => {
                     <BsSearch/>
                 </div>
 
-                <a href="/pomoc">
+                <Link to="/pomoc">
                     <div className="flex-container">
                         <div className='nav-icon'><TfiHeadphoneAlt /></div>
                         <div className='nav-option'>Pomoc i kontakt</div>
                     </div>
-                </a>
-                <a href="/konto"><div className="flex-container">
+                </Link>
+                <Link to="/konto"><div className="flex-container">
                     <div className='nav-icon'><MdAccountCircle /></div>
                     <div className='nav-option'>Konto</div>
-                </div></a>
-                <a href="/lista"><div className="flex-container">
+                </div></Link>
+                <Link to="/lista"><div className="flex-container">
                     <div className='nav-icon'><HiClipboardList /></div>
                     <div className='nav-option'>Twoje listy</div>
-                </div></a>
-                <a href="/koszyk"><div className="flex-container">
+                </div></Link>
+                <Link to="/koszyk"><div className="flex-container">
                     <div className='nav-icon'><BsFillCartFill /></div>
                     <div className='nav-option'>Koszyk</div>
-                </div></a>
+                </div></Link>
             </div>
         </nav>
         

@@ -10,6 +10,7 @@ const Home = () => {
             <NavBar />
             <Categories />
             <Banner />
+            <h1>Polecane produkty</h1>
             <Products />
             <Footer/>
         </>

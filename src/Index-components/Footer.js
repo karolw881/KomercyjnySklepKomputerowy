@@ -14,27 +14,30 @@ return (
 	<Container>
 		<Row>
 		<Column>
-			<Heading>About Us</Heading>
-			<FooterLink href="#">Aim</FooterLink>
-			<FooterLink href="#">Vision</FooterLink>
-			<FooterLink href="#">Testimonials</FooterLink>
+			<Heading>Zamówienia</Heading>
+			<FooterLink href="#">Dostawy</FooterLink>
+			<FooterLink href="#">Raty</FooterLink>
+			<FooterLink href="#">Leasing</FooterLink>
+			<FooterLink href="#">Zwroty i reklamacje</FooterLink>
+			<FooterLink href="#">FAQ</FooterLink>
 		</Column>
 		<Column>
-			<Heading>Services</Heading>
-			<FooterLink href="#">Writing</FooterLink>
-			<FooterLink href="#">Internships</FooterLink>
-			<FooterLink href="#">Coding</FooterLink>
-			<FooterLink href="#">Teaching</FooterLink>
+			<Heading>Promocje i inspiracje</Heading>
+			<FooterLink href="#">Wyprzedaż</FooterLink>
+			<FooterLink href="#">Gorący strzał</FooterLink>
+			<FooterLink href="#">Promocje</FooterLink>
+			<FooterLink href="#">Karty podarunkowe</FooterLink>
+			<FooterLink href="#">Aktualności</FooterLink>
 		</Column>
 		<Column>
-			<Heading>Contact Us</Heading>
-			<FooterLink href="#">Uttar Pradesh</FooterLink>
-			<FooterLink href="#">Ahemdabad</FooterLink>
-			<FooterLink href="#">Indore</FooterLink>
-			<FooterLink href="#">Mumbai</FooterLink>
+			<Heading>X-kom</Heading>
+			<FooterLink href="#">O nas</FooterLink>
+			<FooterLink href="#">Regulamin</FooterLink>
+			<FooterLink href="#">Kontakt</FooterLink>
+			<FooterLink href="#">Polityka prywatności</FooterLink>
 		</Column>
 		<Column>
-			<Heading>Social Media</Heading>
+			<Heading>Media Społecznościowe</Heading>
 			<FooterLink href="#">
 			<i className="fab fa-facebook-f">
 				<span style={{ marginLeft: "10px" }}>

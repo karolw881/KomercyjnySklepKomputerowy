@@ -3,6 +3,9 @@ import Grid from '@mui/material/Grid'; // Grid version 1
 import {Box} from '@mui/material';
 import { bottom, left } from '@popperjs/core';
 
+
+
+
 const ProductList = ({ products }) => {
     return (
         <>
@@ -10,10 +13,9 @@ const ProductList = ({ products }) => {
                 <Grid item className='product-item' width="calc(100% / 4)" height="30vh" 
                  margin="10px 20px" justifyContent={'center'} borderRadius={6}
                 >
-                    <img className='product-img' src={product.image}/>
                     <Box textAlign={left}>
-                        <Box fontSize={15} paddingBottom={5}>{product.name}</Box>
-                        <Box>{product.price + " zł"}</Box>
+                        <Box fontSize={15} paddingBottom={5}>{product.nazwa}</Box>
+                        <Box>{product.cena + " zł"}</Box>
                     </Box>
                 </Grid>
             ))}

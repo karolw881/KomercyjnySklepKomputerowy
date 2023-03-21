@@ -2,6 +2,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import '../Index-css/Login.css'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Niepoprawny adres e-mail').required('Wymagane'),
@@ -19,7 +20,7 @@ const LoginForm = () => {
   return (
     <Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema} onSubmit={handleSubmit}>
       {({ isSubmitting }) => (
-        <Form>
+        <Form className='login-container'>
           <div>
             <label htmlFor="email">E-mail:</label>
             <Field type="email" name="email" />

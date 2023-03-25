@@ -9,7 +9,7 @@ const komputery = () => {
         <>
             <NavBar />
             <Categories />
-            <Products />
+            <Products kategoria={"Komputery"}/>
             <Footer/>
         </>
      );

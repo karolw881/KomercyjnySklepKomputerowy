@@ -24,7 +24,6 @@ const NavBar = () => {
             
 
             <div className="links">
-
                 <div className="searchbar">
                 <input
                     type="text"

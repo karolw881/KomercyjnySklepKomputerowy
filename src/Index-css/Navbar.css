@@ -30,12 +30,14 @@ a:hover {
   .navbar h1 {
     font-size: 3vw;
     color: #49373d;
+    margin-bottom: 2vh;
   }
 
   .navbar #logo {
     width:6vw;
     margin-right: -1vw;
   }
+
 
   .navbar .links {
     font-size: 1em;

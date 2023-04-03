@@ -16,6 +16,8 @@ import axios from 'axios';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import globalStore from '../Store/GlobalStore';
+import { is } from '@babel/types';
+import Test from '../pages/Test/Test';
 
 
 function Copyright(props) {
@@ -55,14 +57,12 @@ export default function SignIn() {
         // zalogowany, przekieruj użytkownika do strony głównej
         localStorage.setItem("user", JSON.stringify(response.data.user));
         globalStore.setUser(JSON.parse(localStorage.getItem("user")));
-        navigate("/Test");
+        navigate("/");
       }
     } catch (error) {
       setLoginError(true);
     }
-  };
-
-    
+  };  
 
   return (
     <ThemeProvider theme={theme} >

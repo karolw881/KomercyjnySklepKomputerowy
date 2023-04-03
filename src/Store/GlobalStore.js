@@ -8,14 +8,7 @@ class GlobalStore {
   constructor() {
     makeAutoObservable(this);
     const user = JSON.parse(localStorage.getItem("user"));
-    
     this.setUser(user);
-    
-    if(user)
-    {
-        this.setFetched(true);
-    }
-
     console.log(user);
   }
 
@@ -24,7 +17,15 @@ class GlobalStore {
   }
 
   setUser(user) {
-    this.user = user;
+    if(user)
+    {
+        this.setFetched(true);
+        this.user = user;
+    }
+
+    else
+        this.user = user;
+   
   }
 
   get getFetched(){

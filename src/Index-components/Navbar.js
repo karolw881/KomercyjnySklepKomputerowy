@@ -8,9 +8,55 @@ import { BsSearch} from 'react-icons/bs'
 import {FaIcon} from 'react-icons/fa'
 import logo from '../images/logo.png'
 import { Link } from 'react-router-dom';
+import { observer } from "mobx-react";
+import { useState } from 'react';
+import globalStore from "../../Store/GlobalStore";
+import Snackbar from '@mui/material/Snackbar';
+import { useNavigate } from 'react-router-dom';
 
 
-const NavBar = () => {
+const NavBar = observer(() => {
+
+    const user = globalStore.getUser;
+    const [isLogged, setIsLogged] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) 
+          setIsLogged(true);
+      }, []);
+
+      const [state, setState] = React.useState({
+        open: false,
+        vertical: 'top',
+        horizontal: 'center',
+      });
+      const { vertical, horizontal, open } = state;
+    
+      const handleOpen = (newState) => () => {
+        setState({ open: true, ...newState });
+      };
+    
+      const handleClose = () => {
+        setState({ ...state, open: false });
+      };
+
+      function logInAlert()
+      {
+        if(!setIsLogged)
+        {
+            handleOpen({
+                vertical: 'top',
+                horizontal: 'center',
+              });
+        }
+
+        else
+        {
+            navigate("/Lista");
+        }
+      }
+
     return (
         <nav className="navbar">
 
@@ -46,7 +92,7 @@ const NavBar = () => {
                     <div className='nav-icon'><MdAccountCircle /></div>
                     <div className='nav-option'>Konto</div>
                 </div></Link>
-                <Link to="/Lista"><div className="flex-container">
+                <Link onClick={logInAlert}><div className="flex-container">
                     <div className='nav-icon'><HiClipboardList /></div>
                     <div className='nav-option'>Twoje listy</div>
                 </div></Link>
@@ -55,11 +101,18 @@ const NavBar = () => {
                     <div className='nav-option'>Koszyk</div>
                 </div></Link>
             </div>
+            <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message="I love snacks"
+        key={vertical + horizontal}
+      />
         </nav>
         
         
 
     );
-}
+})
 
 export default NavBar;

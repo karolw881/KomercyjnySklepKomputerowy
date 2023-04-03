@@ -27,6 +27,16 @@ app.get('/api/uzytkownicy', (req, res) => {
   });
 });
 
+app.post('/api/uzytkownicy', (req, res) => {
+  const { imie, email, login, haslo } = req.body;
+  
+  const sql = "INSERT INTO uzytkownicy (imie, email, login, haslo) VALUES (?, ?, ?, ?)";
+  db.query(sql, [imie, email, login, haslo], (err, result) => {
+    if (err) throw err;
+    res.send('Użytkownik został dodany do bazy danych.');
+  });
+});
+
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
 });

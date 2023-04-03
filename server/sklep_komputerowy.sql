@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Mar 2023, 15:21
+-- Czas generowania: 03 Kwi 2023, 15:51
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -90,37 +90,32 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 
 CREATE TABLE `uzytkownicy` (
   `id` int(11) NOT NULL,
-  `nazwa_uzytkownika` varchar(50) NOT NULL,
-  `haslo` varchar(255) NOT NULL,
-  `rola` varchar(20) NOT NULL
+  `imie` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `login` varchar(50) DEFAULT NULL,
+  `haslo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `uzytkownicy`
 --
 
-INSERT INTO `uzytkownicy` (`id`, `nazwa_uzytkownika`, `haslo`, `rola`) VALUES
-(1, 'jan_kowalski', 'haslo', 'klient'),
-(2, 'anna_nowak', 'haslo', 'klient'),
-(3, 'admin', 'admin', 'administrator'),
-(4, 'pracownik', 'haslo', 'pracownik');
+INSERT INTO `uzytkownicy` (`id`, `imie`, `email`, `login`, `haslo`) VALUES
+(1, 'Michał', 'xmichsen@gmail.com', 'michsen', 'haslo'),
+(2, 'MichuKFC', 'email@example.com', 'michukfc', 'haslo'),
+(3, 'Karol', 'email@example.com', 'kwojcik', 'haslo'),
+(4, 'Piotr', 'email@example.com', 'piopio', 'haslo'),
+(5, 'JP2', 'kremowka@gmail.com', 'JanPablo', 'haslo');
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indeksy dla tabeli `produkty`
---
-ALTER TABLE `produkty`
-  ADD PRIMARY KEY (`id_produktu`);
-
---
 -- Indeksy dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nazwa_uzytkownika` (`nazwa_uzytkownika`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
@@ -130,7 +125,7 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,7 +2,7 @@
 import NavBar from "../../Components/Navbar";
 import Categories from "../../Components/Categories";
 import Footer from "../../Components/Footer";
-import './Pomoc.css'
+import './Pomoc.css';
 
 import { Link } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';

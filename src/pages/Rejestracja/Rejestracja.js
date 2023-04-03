@@ -1,17 +1,17 @@
 import NavBar from "../../Components/Navbar";
 import Categories from "../../Components/Categories";
 import Footer from "../../Components/Footer";
-import Products from "../../Components/Products";
+import Register from "../../Components/Register";
 
-const Peryferia = () => {
+const Rejestracja = () => {
     return ( 
         <>
         <NavBar />
-            <Categories />
-            <Products kategoria={"Peryferia"}/>
-            <Footer/>
+        <Categories />
+        <Register />
+        <Footer />
         </>
-    );
+     );
 }
  
-export default Peryferia;
+export default Rejestracja;

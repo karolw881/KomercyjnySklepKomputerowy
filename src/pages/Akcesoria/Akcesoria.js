@@ -1,7 +1,7 @@
-import NavBar from "../../Index-components/Navbar";
-import Categories from "../../Index-components/Categories";
-import Footer from "../../Index-components/Footer";
-import Products from "../../Index-components/Products";
+import NavBar from "../../Components/Navbar";
+import Categories from "../../Components/Categories";
+import Footer from "../../Components/Footer";
+import Products from "../../Components/Products";
 
 const Akcesoria = () => {
     return ( 

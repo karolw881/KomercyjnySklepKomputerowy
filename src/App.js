@@ -11,6 +11,7 @@ import Pomoc from './pages/Pomoc/Pomoc';
 import Konto from './pages/Konto/Konto';
 import Lista from './pages/Lista/Lista';
 import Koszyk from './pages/Koszyk/Koszyk';
+import Rejestracja from './pages/Rejestracja/Rejestracja';
 import { Route, Routes } from 'react-router-dom';
 
 
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/Konto" element={<Konto/>}/>
                 <Route path="/Lista" element={<Lista/>}/>
                 <Route path="/Koszyk" element={<Koszyk/>}/>
+                <Route path="/Rejestracja" element={<Rejestracja/>}/>
             </Routes>
             
         

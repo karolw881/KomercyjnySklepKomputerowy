@@ -20,6 +20,13 @@ app.get('/api/produkty', (req, res) => {
   });
 });
 
+app.get('/api/uzytkownicy', (req, res) => {
+  db.query('SELECT id,nazwa_uzytkownika,haslo,rola FROM uzytkownicy', (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
 });

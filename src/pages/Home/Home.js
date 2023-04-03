@@ -1,8 +1,8 @@
-import NavBar from "../../Index-components/Navbar";
-import Categories from "../../Index-components/Categories";
-import Products from "../../Index-components/Products";
-import Banner from "../../Index-components/Banner";
-import Footer from "../../Index-components/Footer";
+import NavBar from "../../Components/Navbar";
+import Categories from "../../Components/Categories";
+import Products from "../../Components/Products";
+import Banner from "../../Components/Banner";
+import Footer from "../../Components/Footer";
 
 const Home = () => {
     return ( 
@@ -11,7 +11,7 @@ const Home = () => {
             <Categories />
             <Banner />
             <h1>Polecane produkty</h1>
-            <Products />
+            <Products kategoria={"Polecane"}/>
             <Footer/>
         </>
      );

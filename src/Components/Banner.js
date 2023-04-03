@@ -13,8 +13,6 @@ const Banner = () => {
     { image: banner1, alt: 'Banner 1' },
     { image: banner2, alt: 'Banner 2' },
     { image: banner3, alt: 'Banner 3' },
-    { image: banner4, alt: 'Banner 4' },
-    { image: banner5, alt: 'Banner 5' }
   ];
 
   useEffect(() => {

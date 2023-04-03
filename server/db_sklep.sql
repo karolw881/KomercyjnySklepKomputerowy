@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Mar 2023, 23:46
+-- Czas generowania: 27 Mar 2023, 15:21
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -71,7 +71,39 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 (27, 'Pamięć RAM Corsair Vengeance RGB Pro 32GB', '999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (28, 'Smartwatch Samsung Galaxy Watch 4', '1199.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (29, 'Gra Cyberpunk 2077', '199.99', 'dummy.png', 'Opis produktu...', 'Gaming', 'Specyfikacje produktu...'),
-(30, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1299.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...');
+(30, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1299.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
+(31, 'Laptop Lenovo ThinkPad', '2999.99', 'dummy.png', 'Laptop dla wymagających użytkowników', 'Polecane', 'Procesor: Intel Core i7, RAM: 16GB, Dysk: 512GB SSD'),
+(32, 'Komputer stacjonarny HP', '3499.99', 'dummy.png', 'Komputer idealny do pracy biurowej', 'Polecane', 'Procesor: Intel Core i5, RAM: 8GB, Dysk: 1TB HDD'),
+(33, 'Smartfon Samsung Galaxy', '1499.99', 'dummy.png', 'Najnowszy model flagowy od Samsunga', 'Polecane', 'Ekran: 6,5 cala, Procesor: Exynos 2100, RAM: 8GB, Pamięć wewnętrzna: 256GB'),
+(34, 'Tablet Apple iPad', '1999.99', 'dummy.png', 'Najnowszy model iPada z ekranem Retina', 'Polecane', 'Ekran: 10,2 cala, Procesor: A14 Bionic, Pamięć wewnętrzna: 128GB'),
+(35, 'Klawiatura mechaniczna Logitech', '399.99', 'dummy.png', 'Profesjonalna klawiatura mechaniczna z podświetleniem RGB', 'Polecane', 'Typ przełączników: Romer-G Tactile, Podświetlenie: RGB, Klawisze programowalne'),
+(36, 'Mysz gamingowa Razer', '249.99', 'dummy.png', 'Mysz dla wymagających graczy', 'Polecane', 'Czułość: 16000 DPI, Podświetlenie: RGB, Liczba przycisków: 7'),
+(37, 'Słuchawki bezprzewodowe Sony', '899.99', 'dummy.png', 'Słuchawki bezprzewodowe z funkcją redukcji hałasu', 'Polecane', 'Typ bezprzewodowy: Bluetooth 5.0, Czas pracy na baterii: do 30 godzin'),
+(38, 'Monitor Dell UltraSharp', '2799.99', 'dummy.png', 'Profesjonalny monitor z matrycą IPS i rozdzielczością 4K', 'Polecane', 'Rozdzielczość: 3840 x 2160, Przekątna ekranu: 27 cali, Częstotliwość odświeżania: 60 Hz'),
+(39, 'Kamera internetowa Logitech', '449.99', 'dummy.png', 'Kamera internetowa dla profesjonalistów', 'Polecane', 'Rozdzielczość: Full HD 1080p, Kąt widzenia: 90 stopni, Mikrofon: stereo');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `uzytkownicy`
+--
+
+CREATE TABLE `uzytkownicy` (
+  `id` int(11) NOT NULL,
+  `nazwa_uzytkownika` varchar(50) NOT NULL,
+  `haslo` varchar(255) NOT NULL,
+  `rola` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `uzytkownicy`
+--
+
+INSERT INTO `uzytkownicy` (`id`, `nazwa_uzytkownika`, `haslo`, `rola`) VALUES
+(1, 'jan_kowalski', 'haslo', 'klient'),
+(2, 'anna_nowak', 'haslo', 'klient'),
+(3, 'admin', 'admin', 'administrator'),
+(4, 'pracownik', 'haslo', 'pracownik');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -82,6 +114,23 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 --
 ALTER TABLE `produkty`
   ADD PRIMARY KEY (`id_produktu`);
+
+--
+-- Indeksy dla tabeli `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nazwa_uzytkownika` (`nazwa_uzytkownika`);
+
+--
+-- AUTO_INCREMENT dla zrzuconych tabel
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

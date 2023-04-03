@@ -1,14 +1,15 @@
-import NavBar from "../../Index-components/Navbar";
-import Categories from "../../Index-components/Categories";
-import Footer from "../../Index-components/Footer";
-import LoginForm from "../../Index-components/LoginForm";
+import NavBar from "../../Components/Navbar";
+import Categories from "../../Components/Categories";
+import Footer from "../../Components/Footer";
+import LoginForm from "../../Components/LoginForm";
+import Login from "../../Components/Login";
 
 const Konto = () => {
     return ( 
         <>
         <NavBar/>
         <Categories/>
-        <LoginForm/>
+        <Login/>
         <Footer/>
         
         </>

@@ -107,6 +107,7 @@ textarea:focus, input:focus{
   border-right: 1px solid gray;
   border-spacing: 10px;
   padding-right: 1.5vw;
+  margin-bottom: 2vh;
 }
 
 .navbar-sub {

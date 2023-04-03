@@ -12,6 +12,7 @@ import Konto from './pages/Konto/Konto';
 import Lista from './pages/Lista/Lista';
 import Koszyk from './pages/Koszyk/Koszyk';
 import Rejestracja from './pages/Rejestracja/Rejestracja';
+import Test from './pages/Test/Test';
 import { Route, Routes } from 'react-router-dom';
 
 
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/Lista" element={<Lista/>}/>
                 <Route path="/Koszyk" element={<Koszyk/>}/>
                 <Route path="/Rejestracja" element={<Rejestracja/>}/>
+                <Route path="/Test" element={<Test/>}/>
             </Routes>
             
         

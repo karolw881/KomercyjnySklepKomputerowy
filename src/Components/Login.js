@@ -13,7 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import {Link as RouterLink} from 'react-router-dom';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import globalStore from '../Store/GlobalStore';
 
 
 function Copyright(props) {
@@ -36,13 +38,28 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const [loginError, setLoginError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const login = data.get("login");
+    const password = data.get("password");
+    try {
+      const response = await axios.post("http://localhost:3001/api/login", {
+        login,
+        password,
+      });
+      if (response.status === 200) {
+        // zalogowany, przekieruj użytkownika do strony głównej
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        globalStore.setUser(JSON.parse(localStorage.getItem("user")));
+        navigate("/Test");
+      }
+    } catch (error) {
+      setLoginError(true);
+    }
   };
 
     
@@ -70,10 +87,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="login"
               label="Login"
-              name="email"
-              autoComplete="email"
+              name="login"
+              autoComplete="login"
               autoFocus
             />
             <TextField

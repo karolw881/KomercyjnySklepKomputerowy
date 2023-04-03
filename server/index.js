@@ -37,6 +37,26 @@ app.post('/api/uzytkownicy', (req, res) => {
   });
 });
 
+app.post('/api/login', (req, res) => {
+  const { login, password } = req.body;
+  db.query('SELECT * FROM uzytkownicy WHERE login = ? AND haslo = ?', [login, password], (err, results) => {
+    if (err) throw err;
+    if (results.length === 1) {
+      const user = {
+        id: results[0].id,
+        imie: results[0].imie,
+        email: results[0].email,
+        login: results[0].login
+        
+      };
+      res.status(200).json({ user });
+    } else {
+      res.sendStatus(401); // nieprawidłowe dane logowania
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
 });

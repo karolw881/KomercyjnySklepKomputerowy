@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid'; // Grid version 1
 import iphone13 from '../images/ps5.png';
 import axios from "axios";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -32,11 +33,12 @@ const Products = ( {kategoria} ) => {
         <Grid container spacing={2} maxHeight={10000} maxWidth={1202} margin="auto" justifyContent="center" textAlign="center" borderTop="1px solid white" marginTop={5}>
             {filteredProducts.map(product => (
             <Grid width={400} item key={product.id_produktu}>
-            
+            <Link to="/ProductInfo" state={product}>
             <img className="product-img" src={require(`../images/${product.zdjecie}`)} alt={product.nazwa} />
             <h3>{product.nazwa}</h3>
             <p>{product.cena + ' zł'}</p>
             <p>{product.specyfikacje}</p>
+            </Link>
           </Grid>
             ))}
         </Grid>

@@ -63,6 +63,16 @@ app.post('/api/login', (req, res) => {
   });
 });
 
+app.post('/api/emailChange', (req, res) => {
+  const { email, id_uzytkownika} = req.body;
+  
+  const sql = "UPDATE uzytkownicy SET email = ? WHERE id_uzytkownika = ?";
+  db.query(sql, [email, id_uzytkownika], (err, result) => {
+    if (err) throw err;
+    res.send('Email został zmieniony.');
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);

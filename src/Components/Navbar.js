@@ -90,17 +90,20 @@ const NavBar = observer(() => {
                     <div className='nav-option'>Koszyk</div>
                 </div></Link>
 
-                {isAdmin && <Link to="/Admin"><div className="flex-container">
+                {isAdmin && <Link to="/PanelAdmina"><div className="flex-container">
                     <div className='nav-icon'><BsFillCartFill /></div>
                     <div className='nav-option'>Panel admina</div>
                 </div></Link>}
 
-                {isLogged && 
+                {isLogged && <Link style={{marginTop:"-2vh"}}>
                 <div className="flex-container">
-                    <IconButton onClick={logOut} aria-label="delete" size="large" sx={{marginLeft: 5}}>
+                    
+                    <div className='nav-icon'>
+                    <IconButton onClick={logOut} aria-label="delete" size="large">
                     <LogoutIcon fontSize='inherit' />
-                  </IconButton>
-                  </div>
+                  </IconButton></div>
+                  <div className='nav-option'>Wyloguj</div>
+                  </div></Link>
                 }
                 
             </div>

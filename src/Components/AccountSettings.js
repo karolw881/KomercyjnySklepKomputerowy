@@ -1,15 +1,22 @@
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Button, Box, TextField, Grid } from "@mui/material";
+import { observer } from "mobx-react";
+import globalStore from "../Store/GlobalStore";
+import axios from "axios";
 
-const AccountSettings = () => {
+const AccountSettings = observer(() => {
   const theme = createTheme({
     palette: {
       mode: "dark",
     },
   });
 
-  function handleSubmit() {}
+  const user = globalStore.getUser;
+
+  function handleSubmit(){}
+
+ 
 
   return (
     <>
@@ -107,6 +114,6 @@ const AccountSettings = () => {
    
     </>
   );
-};
+});
 
 export default AccountSettings;

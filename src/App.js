@@ -13,7 +13,7 @@ import Lista from './pages/Lista/Lista';
 import Koszyk from './pages/Koszyk/Koszyk';
 import Rejestracja from './pages/Rejestracja/Rejestracja';
 import Test from './pages/Test/Test';
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 
 
 
@@ -22,7 +22,7 @@ function App() {
     
 
     return (
-        <>
+        <>     
             <Routes>
                 <Route path="/" element={ <Home /> } />
                 <Route path="/Komputery" element={ <Komputery /> } />
@@ -40,8 +40,6 @@ function App() {
                 <Route path="/Rejestracja" element={<Rejestracja/>}/>
                 <Route path="/Test" element={<Test/>}/>
             </Routes>
-            
-        
         </>
     );
 }

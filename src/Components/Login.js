@@ -18,6 +18,8 @@ import { useState } from 'react';
 import globalStore from '../Store/GlobalStore';
 import { is } from '@babel/types';
 import Test from '../pages/Test/Test';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Copyright(props) {
@@ -42,26 +44,53 @@ const theme = createTheme({
 export default function SignIn() {
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
+  const errorNotify = (string) => toast.error(string, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const login = data.get("login");
     const password = data.get("password");
-    try {
-      const response = await axios.post("http://localhost:3001/api/login", {
-        login,
-        password,
-      });
-      if (response.status === 200) {
-        // zalogowany, przekieruj użytkownika do strony głównej
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        globalStore.setUser(JSON.parse(localStorage.getItem("user")));
-        navigate("/");
-      }
-    } catch (error) {
-      setLoginError(true);
+
+    if(login.length === 0)
+    {
+      errorNotify('💀 Wpisz swój login! 💀');
     }
+
+    else if(password.length === 0)
+    {
+      errorNotify('🤡 Wpisz swoje hasło! 🤡');
+    }
+
+
+    else
+    {
+      try {
+        const response = await axios.post("http://localhost:3001/api/login", {
+          login,
+          password,
+        });
+        if (response.status === 200) {
+          // zalogowany, przekieruj użytkownika do strony głównej
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          globalStore.setUser(JSON.parse(localStorage.getItem("user")));
+          navigate("/");
+        }
+      } catch (error) {
+        errorNotify('🥸Zły login lub hasło!🥸');
+        setLoginError(true);
+      }
+    }
+    
   };  
 
   return (
@@ -131,6 +160,7 @@ export default function SignIn() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      <ToastContainer role = "error"/>
     </ThemeProvider>
   );
 }

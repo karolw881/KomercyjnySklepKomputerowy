@@ -14,14 +14,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/api/produkty', (req, res) => {
-  db.query('SELECT id_produktu,nazwa,zdjecie,cena,kategoria,specyfikacje FROM produkty', (err, results) => {
+  db.query('SELECT id_produktu,nazwa,zdjecie,cena,kategoria,specyfikacje,opis FROM produkty', (err, results) => {
     if (err) throw err;
     res.send(results);
   });
 });
 
 app.get('/api/uzytkownicy', (req, res) => {
-  db.query('SELECT id,nazwa_uzytkownika,haslo,rola FROM uzytkownicy', (err, results) => {
+  db.query('SELECT id_uzytkownika,imie,email,login,haslo,rola FROM uzytkownicy', (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
+app.get('/api/loginy_maile', (req, res) => {
+  db.query('SELECT login,email FROM uzytkownicy', (err, results) => {
     if (err) throw err;
     res.send(results);
   });
@@ -43,11 +50,11 @@ app.post('/api/login', (req, res) => {
     if (err) throw err;
     if (results.length === 1) {
       const user = {
-        id: results[0].id,
+        id_uzytkownika: results[0].id_uzytkownika,
         imie: results[0].imie,
         email: results[0].email,
-        login: results[0].login
-        
+        login: results[0].login,
+        rola: results[0].rola
       };
       res.status(200).json({ user });
     } else {

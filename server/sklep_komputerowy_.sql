@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Kwi 2023, 15:51
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Czas generowania: 06 Kwi 2023, 18:42
+-- Wersja serwera: 10.4.24-MariaDB
+-- Wersja PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,75 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `koszyk`
+--
+
+CREATE TABLE `koszyk` (
+  `koszyk_id` int(11) UNSIGNED NOT NULL,
+  `uzytkownik_id` int(11) DEFAULT NULL,
+  `produkt_id` int(11) DEFAULT NULL,
+  `ilosc` int(11) DEFAULT NULL,
+  `data_dodania` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `koszyk`
+--
+
+INSERT INTO `koszyk` (`koszyk_id`, `uzytkownik_id`, `produkt_id`, `ilosc`, `data_dodania`) VALUES
+(1, 1, 2, 2, '2023-04-06 15:43:37'),
+(2, 2, 1, 1, '2023-04-06 15:43:37'),
+(3, 1, 3, 3, '2023-04-06 15:43:37');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `lista`
+--
+
+CREATE TABLE `lista` (
+  `lista_id` int(11) UNSIGNED NOT NULL,
+  `uzytkownik_id` int(11) DEFAULT NULL,
+  `produkt_id` int(11) DEFAULT NULL,
+  `data_dodania` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Nazwa_listy` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `lista`
+--
+
+INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `produkt_id`, `data_dodania`, `Nazwa_listy`) VALUES
+(1, 1, 2, '2023-04-06 15:44:01', NULL),
+(2, 2, 1, '2023-04-06 15:44:01', NULL),
+(3, 1, 3, '2023-04-06 15:44:01', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `opinie`
+--
+
+CREATE TABLE `opinie` (
+  `opinia_id` int(11) UNSIGNED NOT NULL,
+  `produkt_id` int(11) DEFAULT NULL,
+  `uzytkownik_id` int(11) DEFAULT NULL,
+  `tresc` text DEFAULT NULL,
+  `ocena` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `opinie`
+--
+
+INSERT INTO `opinie` (`opinia_id`, `produkt_id`, `uzytkownik_id`, `tresc`, `ocena`) VALUES
+(1, 1, 2, 'Świetny produkt!', 5),
+(2, 1, 3, 'Słaba jakość wykonania', 2),
+(3, 2, 1, 'Dobrze trzyma temperaturę', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `produkty`
 --
 
@@ -35,7 +104,7 @@ CREATE TABLE `produkty` (
   `opis` text NOT NULL,
   `kategoria` varchar(100) NOT NULL,
   `specyfikacje` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `produkty`
@@ -89,43 +158,183 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 --
 
 CREATE TABLE `uzytkownicy` (
-  `id` int(11) NOT NULL,
+  `id_uzytkownika` int(11) NOT NULL,
   `imie` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `login` varchar(50) DEFAULT NULL,
-  `haslo` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `haslo` varchar(50) DEFAULT NULL,
+  `rola` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `uzytkownicy`
 --
 
-INSERT INTO `uzytkownicy` (`id`, `imie`, `email`, `login`, `haslo`) VALUES
-(1, 'Michał', 'xmichsen@gmail.com', 'michsen', 'haslo'),
-(2, 'MichuKFC', 'email@example.com', 'michukfc', 'haslo'),
-(3, 'Karol', 'email@example.com', 'kwojcik', 'haslo'),
-(4, 'Piotr', 'email@example.com', 'piopio', 'haslo'),
-(5, 'JP2', 'kremowka@gmail.com', 'JanPablo', 'haslo');
+INSERT INTO `uzytkownicy` (`id_uzytkownika`, `imie`, `email`, `login`, `haslo`, `rola`) VALUES
+(1, 'Michał', 'xmichsen@gmail.com', 'michsen', 'haslo', 'admin'),
+(2, 'MichuKFC', 'email@example.com', 'michukfc', 'haslo', 'admin'),
+(3, 'Karol', 'email@example.com', 'kwojcik', 'haslo', 'admin'),
+(4, 'Piotr', 'email@example.com', 'piopio', 'haslo', 'admin'),
+(5, 'JP2', 'kremowka@gmail.com', 'JanPablo', 'haslo', 'uzytkownik');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `zamowienia`
+--
+
+CREATE TABLE `zamowienia` (
+  `id_zamowienia` int(11) NOT NULL,
+  `id_uzytkownika` int(11) NOT NULL,
+  `data_zamowienia` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `zamowienia`
+--
+
+INSERT INTO `zamowienia` (`id_zamowienia`, `id_uzytkownika`, `data_zamowienia`) VALUES
+(1, 1, '2023-04-06 10:30:00'),
+(2, 2, '2023-04-06 10:33:00');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `zamowienia_produkty`
+--
+
+CREATE TABLE `zamowienia_produkty` (
+  `id_zamowienia` int(11) NOT NULL,
+  `id_produktu` int(11) NOT NULL,
+  `ilosc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `zamowienia_produkty`
+--
+
+INSERT INTO `zamowienia_produkty` (`id_zamowienia`, `id_produktu`, `ilosc`) VALUES
+(1, 2, 3),
+(2, 3, 2);
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
+-- Indeksy dla tabeli `koszyk`
+--
+ALTER TABLE `koszyk`
+  ADD PRIMARY KEY (`koszyk_id`),
+  ADD KEY `uzytkownik_id` (`uzytkownik_id`),
+  ADD KEY `produkt_id` (`produkt_id`);
+
+--
+-- Indeksy dla tabeli `lista`
+--
+ALTER TABLE `lista`
+  ADD KEY `uzytkownik_id` (`uzytkownik_id`),
+  ADD KEY `produkt_id` (`produkt_id`);
+
+--
+-- Indeksy dla tabeli `opinie`
+--
+ALTER TABLE `opinie`
+  ADD PRIMARY KEY (`opinia_id`),
+  ADD KEY `produkt_id` (`produkt_id`),
+  ADD KEY `uzytkownik_id` (`uzytkownik_id`);
+
+--
+-- Indeksy dla tabeli `produkty`
+--
+ALTER TABLE `produkty`
+  ADD PRIMARY KEY (`id_produktu`);
+
+--
 -- Indeksy dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_uzytkownika`);
+
+--
+-- Indeksy dla tabeli `zamowienia`
+--
+ALTER TABLE `zamowienia`
+  ADD PRIMARY KEY (`id_zamowienia`),
+  ADD KEY `id_uzytkownika` (`id_uzytkownika`);
+
+--
+-- Indeksy dla tabeli `zamowienia_produkty`
+--
+ALTER TABLE `zamowienia_produkty`
+  ADD PRIMARY KEY (`id_zamowienia`,`id_produktu`),
+  ADD KEY `id_produktu` (`id_produktu`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `koszyk`
+--
+ALTER TABLE `koszyk`
+  MODIFY `koszyk_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT dla tabeli `opinie`
+--
+ALTER TABLE `opinie`
+  MODIFY `opinia_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_uzytkownika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT dla tabeli `zamowienia`
+--
+ALTER TABLE `zamowienia`
+  MODIFY `id_zamowienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `koszyk`
+--
+ALTER TABLE `koszyk`
+  ADD CONSTRAINT `koszyk_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`),
+  ADD CONSTRAINT `koszyk_ibfk_2` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`);
+
+--
+-- Ograniczenia dla tabeli `lista`
+--
+ALTER TABLE `lista`
+  ADD CONSTRAINT `lista_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`),
+  ADD CONSTRAINT `lista_ibfk_2` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`);
+
+--
+-- Ograniczenia dla tabeli `opinie`
+--
+ALTER TABLE `opinie`
+  ADD CONSTRAINT `opinie_ibfk_1` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`),
+  ADD CONSTRAINT `opinie_ibfk_2` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`);
+
+--
+-- Ograniczenia dla tabeli `zamowienia`
+--
+ALTER TABLE `zamowienia`
+  ADD CONSTRAINT `zamowienia_ibfk_1` FOREIGN KEY (`id_uzytkownika`) REFERENCES `uzytkownicy` (`id_uzytkownika`);
+
+--
+-- Ograniczenia dla tabeli `zamowienia_produkty`
+--
+ALTER TABLE `zamowienia_produkty`
+  ADD CONSTRAINT `zamowienia_produkty_ibfk_1` FOREIGN KEY (`id_zamowienia`) REFERENCES `zamowienia` (`id_zamowienia`),
+  ADD CONSTRAINT `zamowienia_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

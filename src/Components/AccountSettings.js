@@ -4,6 +4,8 @@ import { Button, Box, TextField, Grid } from "@mui/material";
 import { observer } from "mobx-react";
 import globalStore from "../Store/GlobalStore";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react";
 
 const AccountSettings = observer(() => {
   const theme = createTheme({
@@ -12,10 +14,110 @@ const AccountSettings = observer(() => {
     },
   });
 
+  const errorNotify = (string) =>
+    toast.error(string, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+  const succcesNotify = (string) =>
+    toast.success(string, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
   const user = globalStore.getUser;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [emails, setEmails] = useState([]);
 
-  function handleSubmit(){}
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/loginy_maile')
+      .then(response => {
+        const dataE = response.data.map(item => item.email);
+        setEmails(dataE);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
+
+
+  function changePassword(event){
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const newPassword = data.get("newPassword");
+
+    if(!passwordRegex.test(newPassword))
+    {
+      errorNotify("Hasło musi się składać z: min 8 znaków i jednej cyfry!");
+    }
+
+    else 
+    {
+      const userData = {
+        haslo: newPassword,
+        id_uzytkownika: user.id_uzytkownika
+      }
+  
+      axios
+        .post("http://localhost:3001/api/passwordChange", userData)
+        .then((response) => {
+          document.getElementById("newPassword").value = "";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        succcesNotify("Hasło zmienione!");
+    }
+  }
+
+  function changeEmail(event){
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const newEmail = data.get("newEmail");
+
+    if(!emailRegex.test(newEmail))
+    {
+      errorNotify("Niepoprawny email!");
+    }
+
+    else if(emails.indexOf(newEmail) !== -1)
+    {
+      errorNotify("Taki email już istnieje!");
+    }
+
+    else 
+    {
+      const userData = {
+        email: newEmail,
+        id_uzytkownika: user.id_uzytkownika
+      }
+  
+      axios
+        .post("http://localhost:3001/api/emailChange", userData)
+        .then((response) => {
+          document.getElementById("newEmail").value = "";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        succcesNotify("Email zmieniony!");
+    }
+  }
  
 
   return (
@@ -32,7 +134,7 @@ const AccountSettings = observer(() => {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit}
+          onSubmit={changeEmail}
           sx={{ mt: 3, width: "30%", margin: "auto"}}
         >
           <Typography
@@ -73,7 +175,7 @@ const AccountSettings = observer(() => {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit}
+          onSubmit={changePassword}
           sx={{ mt: 3, width: 500, margin: "auto" }}
         >
           <Typography
@@ -93,6 +195,7 @@ const AccountSettings = observer(() => {
                 fullWidth
                 id="newPassword"
                 label="Nowe hasło"
+                type="password"
                 autoFocus
               />
               <Button
@@ -110,6 +213,7 @@ const AccountSettings = observer(() => {
         
           </Grid>
         </Box>
+        <ToastContainer role="error" />
       </ThemeProvider>
    
     </>

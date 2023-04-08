@@ -41,7 +41,7 @@ const NavBar = observer(() => {
         localStorage.removeItem('user');
         globalStore.setUser(null);
         setIsLogged(false);
-        
+        navigate("/Konto");
         window.location.reload();
     }
 

@@ -73,6 +73,31 @@ app.post('/api/emailChange', (req, res) => {
   });
 });
 
+app.post('/api/passwordChange', (req, res) => {
+  const { haslo, id_uzytkownika} = req.body;
+  
+  const sql = "UPDATE uzytkownicy SET haslo = ? WHERE id_uzytkownika = ?";
+  db.query(sql, [haslo, id_uzytkownika], (err, result) => {
+    if (err) throw err;
+    res.send('Haslo zostało zmienione.');
+  });
+});
+
+app.post('/api/oceny', (req, res) => {
+  const { produkt_id } = req.body;
+  db.query('SELECT o.opinia_id,o.tresc,o.ocena,u.imie FROM opinie o,uzytkownicy u WHERE o.produkt_id = ? AND o.uzytkownik_id = u.id_uzytkownika;', [produkt_id], (err, results) => {
+    if (err) throw err;
+    const oceny = results.map(result => ({
+      id: result.opinia_id,
+      tresc: result.tresc,
+      ocena: result.ocena,
+      imie: result.imie
+    }));
+    res.status(200).json(oceny);
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);

@@ -16,8 +16,6 @@ import axios from 'axios';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import globalStore from '../Store/GlobalStore';
-import { is } from '@babel/types';
-import Test from '../pages/Test/Test';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

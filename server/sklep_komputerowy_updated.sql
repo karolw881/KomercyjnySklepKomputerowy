@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Kwi 2023, 16:18
+-- Czas generowania: 12 Kwi 2023, 19:08
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -28,21 +28,72 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `koszyk` (
-  `koszyk_id` int(11) UNSIGNED NOT NULL,
-  `uzytkownik_id` int(11) DEFAULT NULL,
-  `produkt_id` int(11) DEFAULT NULL,
-  `ilosc` int(11) DEFAULT NULL,
-  `data_dodania` timestamp NOT NULL DEFAULT current_timestamp()
+  `koszyk_id` int(11) NOT NULL,
+  `uzytkownik_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `koszyk`
 --
 
-INSERT INTO `koszyk` (`koszyk_id`, `uzytkownik_id`, `produkt_id`, `ilosc`, `data_dodania`) VALUES
-(1, 1, 2, 2, '2023-04-06 15:43:37'),
-(2, 2, 1, 1, '2023-04-06 15:43:37'),
-(3, 1, 3, 3, '2023-04-06 15:43:37');
+INSERT INTO `koszyk` (`koszyk_id`, `uzytkownik_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(16, 16);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `koszyk_produkty`
+--
+
+CREATE TABLE `koszyk_produkty` (
+  `koszyk_id` int(11) DEFAULT NULL,
+  `id_produktu` int(11) DEFAULT NULL,
+  `ilosc` int(11) NOT NULL DEFAULT 1,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `koszyk_produkty`
+--
+
+INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
+(1, 2, 1, 1),
+(1, 3, 1, 2),
+(1, 10, 1, 3),
+(1, 4, 10, 4),
+(1, 11, 11, 5),
+(1, 17, 10, 11),
+(1, 21, 10, 12),
+(1, 31, 10, 13),
+(2, 2, 1, 15),
+(2, 3, 1, 16),
+(3, 3, 1, 17),
+(4, 3, 1, 18),
+(5, 3, 1, 19),
+(4, 2, 1, 20),
+(2, 10, 1, 21),
+(2, 1, 1, 24),
+(2, 1, 1, 25),
+(2, 1, 1, 26),
+(1, 4, 1, 27),
+(16, 1, 1, 47),
+(16, 1, 1, 51),
+(16, 2, 1, 53),
+(16, 3, 1, 54);
 
 -- --------------------------------------------------------
 
@@ -51,21 +102,53 @@ INSERT INTO `koszyk` (`koszyk_id`, `uzytkownik_id`, `produkt_id`, `ilosc`, `data
 --
 
 CREATE TABLE `lista` (
-  `lista_id` int(11) UNSIGNED NOT NULL,
+  `lista_id` int(11) NOT NULL,
   `uzytkownik_id` int(11) DEFAULT NULL,
-  `produkt_id` int(11) DEFAULT NULL,
-  `data_dodania` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Nazwa_listy` varchar(30) DEFAULT NULL
+  `nazwa_listy` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `lista`
 --
 
-INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `produkt_id`, `data_dodania`, `Nazwa_listy`) VALUES
-(1, 1, 2, '2023-04-06 15:44:01', NULL),
-(2, 2, 1, '2023-04-06 15:44:01', NULL),
-(3, 1, 3, '2023-04-06 15:44:01', NULL);
+INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
+(1, 1, 'Na studia'),
+(2, 1, 'Do pracy'),
+(3, 1, 'Komputer unlimited kaska');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `lista_produkty`
+--
+
+CREATE TABLE `lista_produkty` (
+  `lista_id` int(11) DEFAULT NULL,
+  `id_produktu` int(11) DEFAULT NULL,
+  `ilosc` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `lista_produkty`
+--
+
+INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`) VALUES
+(1, 1, 1),
+(1, 2, 1),
+(1, 20, 2),
+(1, 22, 1),
+(1, 23, 2),
+(1, 3, 1),
+(1, 4, 1),
+(2, 1, 1),
+(2, 2, 1),
+(2, 13, 1),
+(2, 14, 1),
+(2, 15, 1),
+(3, 1, 1),
+(3, 2, 1),
+(3, 3, 1),
+(3, 25, 25);
 
 -- --------------------------------------------------------
 
@@ -237,9 +320,20 @@ INSERT INTO `uzytkownicy` (`id_uzytkownika`, `imie`, `email`, `login`, `haslo`, 
 (9, 'Pudzian', 'pudzian@gmail.com', 'pudzianowskiszef', 'haslo1234', NULL),
 (10, 'testowy', 'tst@wp.pl', 'testowy1', 'haslo1234', NULL),
 (11, 'testowy2', 'test2@wp.pl', 'testowy2', 'haslo1234', NULL),
-(12, 'Grzegorz', 'oxygenabuser@wp.pl', 'grzegorz', 'haslo1234', NULL),
+(12, 'Grzegorz', 'icantbreathe@o2.pl', 'grzegorz', 'haslo1234', NULL),
 (13, 'KrzysztofKonon', 'konon@wp.pl', 'kononowicz', 'haslo1234', NULL),
-(14, 'Major', 'szkolna@wp.pl', 'major', 'haslo1234', NULL);
+(14, 'Major', 'szkolna@wp.pl', 'major', 'haslo1234', NULL),
+(16, 'test1', 'test@wp.pl', 'testowy', 'haslo1234', NULL);
+
+--
+-- Wyzwalacze `uzytkownicy`
+--
+DELIMITER $$
+CREATE TRIGGER `nowy_uzytkownik` AFTER INSERT ON `uzytkownicy` FOR EACH ROW BEGIN
+  INSERT INTO koszyk (koszyk_id, uzytkownik_id) VALUES (NEW.id_uzytkownika, NEW.id_uzytkownika);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -279,6 +373,7 @@ CREATE TABLE `zamowienia_produkty` (
 
 INSERT INTO `zamowienia_produkty` (`id_zamowienia`, `id_produktu`, `ilosc`) VALUES
 (1, 2, 3),
+(1, 4, 2),
 (2, 3, 2);
 
 --
@@ -290,15 +385,29 @@ INSERT INTO `zamowienia_produkty` (`id_zamowienia`, `id_produktu`, `ilosc`) VALU
 --
 ALTER TABLE `koszyk`
   ADD PRIMARY KEY (`koszyk_id`),
-  ADD KEY `uzytkownik_id` (`uzytkownik_id`),
-  ADD KEY `produkt_id` (`produkt_id`);
+  ADD KEY `uzytkownik_id` (`uzytkownik_id`);
+
+--
+-- Indeksy dla tabeli `koszyk_produkty`
+--
+ALTER TABLE `koszyk_produkty`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `koszyk_id` (`koszyk_id`),
+  ADD KEY `id_produktu` (`id_produktu`);
 
 --
 -- Indeksy dla tabeli `lista`
 --
 ALTER TABLE `lista`
-  ADD KEY `uzytkownik_id` (`uzytkownik_id`),
-  ADD KEY `produkt_id` (`produkt_id`);
+  ADD PRIMARY KEY (`lista_id`),
+  ADD KEY `uzytkownik_id` (`uzytkownik_id`);
+
+--
+-- Indeksy dla tabeli `lista_produkty`
+--
+ALTER TABLE `lista_produkty`
+  ADD KEY `lista_id` (`lista_id`),
+  ADD KEY `id_produktu` (`id_produktu`);
 
 --
 -- Indeksy dla tabeli `opinie`
@@ -339,10 +448,10 @@ ALTER TABLE `zamowienia_produkty`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `koszyk`
+-- AUTO_INCREMENT dla tabeli `koszyk_produkty`
 --
-ALTER TABLE `koszyk`
-  MODIFY `koszyk_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `koszyk_produkty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT dla tabeli `opinie`
@@ -354,7 +463,7 @@ ALTER TABLE `opinie`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id_uzytkownika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_uzytkownika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT dla tabeli `zamowienia`
@@ -370,15 +479,27 @@ ALTER TABLE `zamowienia`
 -- Ograniczenia dla tabeli `koszyk`
 --
 ALTER TABLE `koszyk`
-  ADD CONSTRAINT `koszyk_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`),
-  ADD CONSTRAINT `koszyk_ibfk_2` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`);
+  ADD CONSTRAINT `koszyk_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`);
+
+--
+-- Ograniczenia dla tabeli `koszyk_produkty`
+--
+ALTER TABLE `koszyk_produkty`
+  ADD CONSTRAINT `koszyk_produkty_ibfk_1` FOREIGN KEY (`koszyk_id`) REFERENCES `koszyk` (`koszyk_id`),
+  ADD CONSTRAINT `koszyk_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 
 --
 -- Ograniczenia dla tabeli `lista`
 --
 ALTER TABLE `lista`
-  ADD CONSTRAINT `lista_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`),
-  ADD CONSTRAINT `lista_ibfk_2` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`);
+  ADD CONSTRAINT `lista_ibfk_1` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`);
+
+--
+-- Ograniczenia dla tabeli `lista_produkty`
+--
+ALTER TABLE `lista_produkty`
+  ADD CONSTRAINT `lista_produkty_ibfk_1` FOREIGN KEY (`lista_id`) REFERENCES `lista` (`lista_id`),
+  ADD CONSTRAINT `lista_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 
 --
 -- Ograniczenia dla tabeli `opinie`

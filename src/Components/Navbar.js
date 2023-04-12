@@ -41,7 +41,6 @@ const NavBar = observer(() => {
         localStorage.removeItem('user');
         globalStore.setUser(null);
         setIsLogged(false);
-        navigate("/Konto");
         window.location.reload();
     }
 
@@ -90,20 +89,17 @@ const NavBar = observer(() => {
                     <div className='nav-option'>Koszyk</div>
                 </div></Link>
 
-                {isAdmin && <Link to="/PanelAdmina"><div className="flex-container">
+                {isAdmin && <Link to="/Admin"><div className="flex-container">
                     <div className='nav-icon'><BsFillCartFill /></div>
                     <div className='nav-option'>Panel admina</div>
                 </div></Link>}
 
-                {isLogged && <Link style={{marginTop:"-2vh"}}>
+                {isLogged && 
                 <div className="flex-container">
-                    
-                    <div className='nav-icon'>
-                    <IconButton onClick={logOut} aria-label="delete" size="large">
+                    <IconButton onClick={logOut} aria-label="delete" size="large" sx={{marginLeft: 5}}>
                     <LogoutIcon fontSize='inherit' />
-                  </IconButton></div>
-                  <div className='nav-option'>Wyloguj</div>
-                  </div></Link>
+                  </IconButton>
+                  </div>
                 }
                 
             </div>

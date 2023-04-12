@@ -97,6 +97,41 @@ app.post('/api/oceny', (req, res) => {
   });
 });
 
+//koszyk
+app.post('/api/koszyk', (req, res) => {
+  const { user_id } = req.body;
+  db.query('SELECT kp.id ,p.id_produktu, p.nazwa, p.cena, p.zdjecie, kp.ilosc FROM produkty p, koszyk_produkty kp, koszyk k WHERE k.uzytkownik_id = ? AND k.koszyk_id = kp.koszyk_id AND kp.id_produktu = p.id_produktu;', [user_id], (err, results) => {
+    if (err) throw err;
+    const koszyk = results.map(result => ({
+      id: result.id,
+      id_produktu: result.id_produktu,
+      nazwa: result.nazwa,
+      cena: result.cena,
+      zdjecie: result.zdjecie,
+      ilosc: result.ilosc
+    }));
+    res.status(200).json(koszyk);
+  });
+});
+
+//usun produkt z koszyka
+app.post('/api/deleteKoszyk', (req, res) => {
+  const { id, koszyk_id } = req.body;
+  db.query('DELETE FROM koszyk_produkty WHERE id = ? AND koszyk_id = ?;', [id,koszyk_id], (err) => {
+    if (err) throw err;
+    res.status(200).send(); // lub res.end()
+  });
+});
+
+
+//dodaj produkt do koszyka
+app.post('/api/addKoszyk', (req, res) => {
+  const { produkt_id, user_id } = req.body;
+  db.query('INSERT INTO koszyk_produkty (koszyk_id, id_produktu) SELECT k.koszyk_id, ? FROM koszyk k WHERE k.uzytkownik_id = ?;', [produkt_id, user_id], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
 
 
 app.listen(port, () => {

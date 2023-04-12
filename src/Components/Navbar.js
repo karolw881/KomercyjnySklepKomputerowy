@@ -12,6 +12,7 @@ import { observer } from "mobx-react";
 import globalStore from '../Store/GlobalStore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { Button } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -89,17 +90,18 @@ const NavBar = observer(() => {
                     <div className='nav-option'>Koszyk</div>
                 </div></Link>
 
-                {isAdmin && <Link to="/Admin"><div className="flex-container">
-                    <div className='nav-icon'><BsFillCartFill /></div>
+                {isAdmin && <Link to="/PanelAdmina"><div className="flex-container">
+                    <div className='nav-icon'><AdminPanelSettingsIcon /></div>
                     <div className='nav-option'>Panel admina</div>
                 </div></Link>}
 
-                {isLogged && 
+                {isLogged && <Link style={{marginTop:"-8px"}}>
                 <div className="flex-container">
-                    <IconButton onClick={logOut} aria-label="delete" size="large" sx={{marginLeft: 5}}>
+                    <IconButton className='nav-icon' onClick={logOut} aria-label="delete" size="large">
                     <LogoutIcon fontSize='inherit' />
-                  </IconButton>
-                  </div>
+                    </IconButton>
+                    <div className="nav-option">Wyloguj</div>
+                  </div></Link>
                 }
                 
             </div>

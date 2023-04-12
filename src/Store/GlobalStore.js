@@ -9,7 +9,6 @@ class GlobalStore {
     makeAutoObservable(this);
     const user = JSON.parse(localStorage.getItem("user"));
     this.setUser(user);
-    console.log(user);
   }
 
   get getUser() {

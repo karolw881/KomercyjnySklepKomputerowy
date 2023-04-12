@@ -6,7 +6,7 @@ const CategoryList = ({ categories }) => {
     return (
         <div className='category-list'>
             {categories.map((category) => (
-                <div className="category-item">
+                <div key={category.id} className="category-item">
                     <Link to={category.link}>
                     <div className='category-icon'>
                         {category.icon}

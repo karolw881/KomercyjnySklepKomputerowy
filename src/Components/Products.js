@@ -7,15 +7,19 @@ import globalStore from "../Store/GlobalStore";
 import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Icon } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
 
 
 
 const Products = observer(( {kategoria} ) => {
     const user = globalStore.getUser;
+    const [isLogged,setIsLogged] = useState(false);
     const [products, setProducts] = useState([]);
 
     const theme = createTheme({
@@ -26,6 +30,9 @@ const Products = observer(( {kategoria} ) => {
 
 
   useEffect(() => {
+    if(user)
+      setIsLogged(true);
+
     axios.get('http://localhost:3001/api/produkty')
       .then(response => {
         setProducts(response.data);
@@ -88,7 +95,8 @@ const Products = observer(( {kategoria} ) => {
             <p>{product.cena + ' zł'}</p>
             <p>{product.specyfikacje}</p>
             </Link>
-            <Button variant="contained" onClick={() => addProduct(product.id_produktu)}>Dodaj do koszyka</Button>
+            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><IconButton><FavoriteIcon/></IconButton><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton></div>}
+            
             
           </Grid>
           

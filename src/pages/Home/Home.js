@@ -17,9 +17,7 @@ const Home = observer(() => {
 
     useEffect(() => {
         if (!user) {
-          console.log("nie jestes zalogowany")
         } else {
-          console.log(user.imie);
           setIsLogged(true);
         }
       }, []);

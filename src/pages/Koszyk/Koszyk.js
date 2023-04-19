@@ -5,18 +5,22 @@ import { observer } from "mobx-react";
 import globalStore from "../../Store/GlobalStore";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Typography } from "@mui/material";
+import { Grid,Box, FormGroup, FormControlLabel,Button, Typography, List, ListItem, Avatar, ListItemAvatar, ListItemText } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from "@mui/material/IconButton";
+import DeleteIcon from '@mui/icons-material/Delete';
+import FolderIcon from '@mui/icons-material/Folder';
 
 const Koszyk = observer(() => {
     const user = globalStore.getUser;
     const [isLogged, setIsLogged] = useState(false);
     const [koszyk,setKoszyk] = useState([]);
     const [price,setPrice] = useState(0);
+    const [dense, setDense] = useState(false);
+    const [secondary, setSecondary] = useState(false);
 
     const theme = createTheme({
         palette: {
@@ -24,6 +28,7 @@ const Koszyk = observer(() => {
         },
       });
   
+
 
     const succcesNotify = (string) =>
     toast.success(string, {
@@ -97,18 +102,30 @@ const Koszyk = observer(() => {
         <>
         <NavBar/>
         <Categories/>
-        {isLogged && ( <>
-          <Typography variant="h1">Twój koszyk</Typography>
-          {koszyk?.map((produkt) => (
-              <div style={{textAlign:"center",padding:"20px"}} key={produkt?.id}>
-                  <Typography variant="body1">{produkt?.id} | {produkt?.nazwa}  |  {produkt?.cena} zł  | Ilość: {produkt?.ilosc} <IconButton onClick={() => deleteProduct(produkt.id)}><RemoveCircleIcon /></IconButton></Typography>
-              </div>
-          ))} 
-          <Typography sx={{textAlign:"center",padding:"20px"}} variant="h4">Cena: {price?.toFixed(2)} zł</Typography>
-          <ToastContainer/>
-          </>
+        {/* %%%%%%%%%%%%%%%%% */}
+        {isLogged && (
+          <div style={{width:"94%"}}>
+          <Grid container spacing={1} sx={{margin:"2vh 5%"}}>
+              <Grid item xs={7} sx={{margin:"0 5vh",border:"1px solid gray", borderRadius:"20px"}}>
+              <List dense={dense}>
+              {koszyk?.map((produkt) => (
+                  <ListItem key={produkt.id}>
+                    <img style={{width:"10%",paddingRight:"2%"}} src={require(`../../images/${produkt.zdjecie}`)} alt={produkt.nazwa} />
+                    <ListItemText primary={produkt.nazwa} secondary={produkt.cena + "zł"}/>
+                    <IconButton onClick={() => deleteProduct(produkt.id)}><DeleteIcon /></IconButton>
+                  </ListItem>
+                ))} 
+              </List>
+              </Grid>
+              <Grid item xs={3} sx={{border:"1px solid gray", borderRadius:"20px",height:"30vh"}}>
+                <Typography variant="body1">Cena:</Typography>
+                <Typography variant="body1">{price.toFixed(2) + " zł"}</Typography>
+              </Grid>
+          </Grid>
+          </div>
         )}
         
+        {/* %%%%%%%%%%%%%%%%% */}
         {!isLogged && <Typography sx={{textAlign:"center",padding:"20px"}} variant="h3">Zaloguj się aby zobaczyć twój koszyk</Typography>}
         <Footer/>
         </>

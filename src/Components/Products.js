@@ -15,6 +15,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import AddToList from "./AddToList";
+import DeleteIcon from '@mui/icons-material/Delete'; 
 
 
 
@@ -22,6 +23,7 @@ const Products = observer(( {kategoria} ) => {
     const user = globalStore.getUser;
     const [isLogged,setIsLogged] = useState(false);
     const [products, setProducts] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const theme = createTheme({
       palette: {
@@ -32,7 +34,14 @@ const Products = observer(( {kategoria} ) => {
 
   useEffect(() => {
     if(user)
+    {
       setIsLogged(true);
+      if(user.rola === "admin")
+      {
+        setIsAdmin(true);
+      }
+    }
+      
 
     axios.get('http://localhost:3001/api/produkty')
       .then(response => {
@@ -96,7 +105,7 @@ const Products = observer(( {kategoria} ) => {
             <p>{product.cena + ' zł'}</p>
             <p>{product.specyfikacje}</p>
             </Link>
-            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton></div>}
+            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton>{false && <IconButton><DeleteIcon /></IconButton>}</div>}
             
             
           </Grid>

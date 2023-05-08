@@ -124,28 +124,28 @@ const AccountSettings = observer(() => {
     <>
     
       <ThemeProvider theme={theme}>
+      <Box
+          component="form"
+          noValidate
+          onSubmit={changeEmail}
+          sx={{ mt: 3, width: "30%", margin:"0 10vw"}}
+        >
         <Typography
           sx={{ textAlign: "center", margin: 6 }}
-          variant="h2"
+          variant="h3"
           gutterBottom
         >
           Ustawienia Konta
         </Typography>
-        <Box
-          component="form"
-          noValidate
-          onSubmit={changeEmail}
-          sx={{ mt: 3, width: "30%", margin: "auto"}}
-        >
           <Typography
-            sx={{ textAlign: "center", margin: 6 }}
+            sx={{ textAlign: "center", margin:"1vh 10vw" }}
             variant="h6"
             gutterBottom
           >
-            Zmień adres email
+            Zmień email
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} sx={{margin:"0 10vw"}}>
              
               <TextField
                 autoComplete="given-email"
@@ -176,7 +176,7 @@ const AccountSettings = observer(() => {
           component="form"
           noValidate
           onSubmit={changePassword}
-          sx={{ mt: 3, width: 500, margin: "auto" }}
+          sx={{ mt: 3, width: "30%", margin: "auto" }}
         >
           <Typography
             sx={{ textAlign: "center", margin: 6 }}
@@ -186,7 +186,7 @@ const AccountSettings = observer(() => {
             Zmień hasło
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} >
              
               <TextField
                 autoComplete="given-password"
@@ -208,9 +208,6 @@ const AccountSettings = observer(() => {
             </Button>
           
             </Grid>
-
-            
-        
           </Grid>
         </Box>
         <ToastContainer role="error" />

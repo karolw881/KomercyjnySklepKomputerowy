@@ -28,7 +28,10 @@ const PanelAdmina = () => {
         <NavBar />
         <Categories />
         {!isAdmin && <h1>Access denied</h1>}
-        {isAdmin && <h1>Witaj Adminie {user?.imie}</h1>}
+        {isAdmin && (
+          <h1>Witaj Adminie {user?.imie}</h1>
+          
+        )}
         <Footer />
         </>
      );

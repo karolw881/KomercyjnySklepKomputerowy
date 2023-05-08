@@ -15,26 +15,20 @@ const Konto = observer(() => {
         if (user) 
           setIsLogged(true);
       }, []);
-      
-      if(isLogged)
-      {
-        return(
 
-            <>
-        <NavBar/>
-        <Categories/>
-        <AccountSettings />
-        <Footer/>
-        
-        </>
-        );
-      }
 
     return ( 
         <>
         <NavBar/>
         <Categories/>
-        <Login/>
+        {isLogged && (
+          <AccountSettings />
+        )}
+
+        {!isLogged && (
+          <Login/>
+        )}
+        
         <Footer/>
         
         </>

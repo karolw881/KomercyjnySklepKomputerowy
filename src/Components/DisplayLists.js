@@ -15,7 +15,10 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import axios from "axios";
 import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 
 
 const DisplayLists = observer(() => {
@@ -88,6 +91,20 @@ const DisplayLists = observer(() => {
     }
   };
 
+  const deleteProdukt = async (id_rekordu) => {
+    try {
+      const response = await axios.post("http://localhost:3001/api/removeListProduct", {
+        id_rekordu
+      });
+      if (response.status === 200) {
+        getProduktyList();
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleClick = (id) => {
     setOpenList((prevState) => ({ ...prevState, [id]: !prevState[id] }));
   };
@@ -101,14 +118,14 @@ const DisplayLists = observer(() => {
           {isLogged && (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "#333" }}>
-        <ListSubheader sx={{ bgcolor: "#333", color: "#d3d3d3", fontSize: "1rem" }}>Twoje listy</ListSubheader>
+        <ListSubheader sx={{ bgcolor: "#333", color: "#d3d3d3", fontSize: "1rem", textAlign:"center" }}>Twoje listy</ListSubheader>
         {nazwyList.map((lista) => {
   const isOpen = openList[lista.id];
   return (
     <div key={lista.id}>
       <ListItem sx={{ cursor: "pointer" }} onClick={() => handleClick(lista.id)}>
         <ListItemIcon>
-          <InboxIcon />
+          <FavoriteIcon />
         </ListItemIcon>
         <ListItemText primary={lista.nazwa} />
         {isOpen ? <ExpandLess /> : <ExpandMore />}
@@ -121,12 +138,16 @@ const DisplayLists = observer(() => {
           {produktyList.map((produkt) => {
             if (produkt.lista_id === lista.id) {
               return (
-                <ListItemButton sx={{ pl: 4 }} key={produkt.id_produktu}>
+                <ListItem sx={{ pl: 5, pr: 5 }} key={produkt.id}>
                   <ListItemIcon>
-                    <StarBorder />
+                    <LabelImportantIcon />
                   </ListItemIcon>
-                  <ListItemText primary={produkt.nazwa} />
-                </ListItemButton>
+                  <ListItemText primary={produkt.nazwa}/>
+                  <IconButton color="error" onClick={() => deleteProdukt(produkt.id)}>
+                    <RemoveCircleIcon sx={{fontSize:"1.2rem"}}/>
+                  </IconButton>
+                </ListItem>
+               
               );
             } else {
               return null;

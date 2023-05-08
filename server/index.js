@@ -158,9 +158,10 @@ app.post('/api/addKoszyk', (req, res) => {
   //pobierz produkty z list danego użytkownika
   app.post('/api/listProducts', (req, res) => {
     const { user_id } = req.body;
-    db.query('SELECT lp.lista_id, p.id_produktu, p.nazwa, p.zdjecie, p.cena FROM lista_produkty lp, lista l,produkty p WHERE lp.lista_id = l.lista_id AND lp.id_produktu = p.id_produktu AND l.uzytkownik_id = ?;', [user_id], (err, results) => {
+    db.query('SELECT lp.id_rekordu, lp.lista_id, p.id_produktu, p.nazwa, p.zdjecie, p.cena FROM lista_produkty lp, lista l,produkty p WHERE lp.lista_id = l.lista_id AND lp.id_produktu = p.id_produktu AND l.uzytkownik_id = ?;', [user_id], (err, results) => {
       if (err) throw err;
       const listProducts = results.map(result => ({
+        id: result.id_rekordu,
         lista_id: result.lista_id,
         id_produktu: result.id_produktu,
         nazwa: result.nazwa,
@@ -180,10 +181,19 @@ app.post('/api/removeList', (req, res) => {
   });
 });
 
-//delete product from list
+//add product to a list
 app.post('/api/addListProduct', (req, res) => {
   const { lista_id, id_produktu } = req.body;
   db.query('INSERT INTO lista_produkty (lista_id, id_produktu) VALUES (?, ?);', [lista_id, id_produktu], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+//delete product from a list
+app.post('/api/removeListProduct', (req, res) => {
+  const { id_rekordu } = req.body;
+  db.query('DELETE FROM lista_produkty WHERE id_rekordu = ?;', [id_rekordu], (err) => {
     if (err) throw err;
     res.status(200).send();
   });

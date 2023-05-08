@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
+import AddToList from "./AddToList";
 
 
 
@@ -95,7 +96,7 @@ const Products = observer(( {kategoria} ) => {
             <p>{product.cena + ' zł'}</p>
             <p>{product.specyfikacje}</p>
             </Link>
-            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><IconButton><FavoriteIcon/></IconButton><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton></div>}
+            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton></div>}
             
             
           </Grid>

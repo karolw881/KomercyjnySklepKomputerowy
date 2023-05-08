@@ -18,6 +18,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -122,13 +123,13 @@ export default function SignUp() {
     };
 
     if (userData.imie.length === 0) {
-      errorNotify("💩 Wpisz imie! 💩");
+      errorNotify("Wpisz imie!");
     } else if (userData.email.length === 0) {
-      errorNotify("🤮 Wpisz email! 🤮");
+      errorNotify("Wpisz email!");
     } else if (userData.login.length === 0) {
-      errorNotify("😤 Wpisz login! 😤");
+      errorNotify("Wpisz login!");
     } else if (userData.haslo.length === 0) {
-      errorNotify("😒 Wpisz haslo! 😒");
+      errorNotify("Wpisz haslo!");
     } else if (!emailRegex.test(userData.email)) {
       errorNotify("Niepoprawny email!");
     } else if (!passwordRegex.test(userData.haslo)) {

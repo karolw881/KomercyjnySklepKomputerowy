@@ -133,6 +133,61 @@ app.post('/api/addKoszyk', (req, res) => {
   });
 });
 
+  //stworz liste o danej nazwie
+  app.post('/api/addList', (req, res) => {
+    const { user_id, nazwa } = req.body;
+    db.query('INSERT INTO lista (uzytkownik_id, nazwa_listy) VALUES(?, ?);', [user_id, nazwa], (err) => {
+      if (err) throw err;
+      res.status(200).send();
+    });
+  });
+
+  //pobierz nazwy list danego uzytkownika
+  app.post('/api/listNames', (req, res) => {
+    const { user_id } = req.body;
+    db.query('SELECT lista_id,nazwa_listy FROM lista WHERE uzytkownik_id = ?;', [user_id], (err, results) => {
+      if (err) throw err;
+      const nazwyList = results.map(result => ({
+        id: result.lista_id,
+        nazwa: result.nazwa_listy,
+      }));
+      res.status(200).json(nazwyList);
+    });
+  });
+
+  //pobierz produkty z list danego użytkownika
+  app.post('/api/listProducts', (req, res) => {
+    const { user_id } = req.body;
+    db.query('SELECT lp.lista_id, p.id_produktu, p.nazwa, p.zdjecie, p.cena FROM lista_produkty lp, lista l,produkty p WHERE lp.lista_id = l.lista_id AND lp.id_produktu = p.id_produktu AND l.uzytkownik_id = ?;', [user_id], (err, results) => {
+      if (err) throw err;
+      const listProducts = results.map(result => ({
+        lista_id: result.lista_id,
+        id_produktu: result.id_produktu,
+        nazwa: result.nazwa,
+        zdjecie: result.zdjecie,
+        cena: result.cena,
+      }));
+      res.status(200).json(listProducts);
+    });
+  });
+
+//delete list
+app.post('/api/removeList', (req, res) => {
+  const { lista_id } = req.body;
+  db.query('DELETE FROM lista WHERE lista_id = ?', [lista_id], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+//delete product from list
+app.post('/api/addListProduct', (req, res) => {
+  const { lista_id, id_produktu } = req.body;
+  db.query('INSERT INTO lista_produkty (lista_id, id_produktu) VALUES (?, ?);', [lista_id, id_produktu], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);

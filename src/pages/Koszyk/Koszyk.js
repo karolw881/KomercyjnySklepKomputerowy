@@ -13,6 +13,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
+import { Link } from "react-router-dom";
 
 const Koszyk = observer(() => {
     const user = globalStore.getUser;
@@ -55,6 +56,7 @@ const Koszyk = observer(() => {
                 setKoszyk(response.data);
                 const totalPrice = response.data.reduce((total, product) => total + product.cena, 0);
                 setPrice(totalPrice);
+                globalStore.setTotalPrice(totalPrice);
             }
         }
 
@@ -120,6 +122,9 @@ const Koszyk = observer(() => {
               <Grid item xs={3} sx={{border:"1px solid gray", borderRadius:"20px",height:"30vh"}}>
                 <Typography variant="body1">Cena:</Typography>
                 <Typography variant="body1">{price.toFixed(2) + " zł"}</Typography>
+                  <Link to="/Platnosc">
+                    <Button variant="contained">Zamawiam</Button>
+                  </Link>
               </Grid>
           </Grid>
           </div>

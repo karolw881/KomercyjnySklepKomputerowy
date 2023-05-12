@@ -13,6 +13,7 @@ import Lista from './pages/Lista/Lista';
 import Koszyk from './pages/Koszyk/Koszyk';
 import PanelAdmina from './pages/PanelAdmina/PanelAdmina';
 import Rejestracja from './pages/Rejestracja/Rejestracja';
+import Platnosc from './pages/Platnosc/Platnosc';
 import Test from './pages/Test/Test';
 import {Route, Routes } from 'react-router-dom';
 import ProductInfo from './pages/ProductInfo/ProductInfo';
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/Test" element={<Test/>}/>
                 <Route path="/ProductInfo" element={<ProductInfo/>}/>
                 <Route path="/PanelAdmina" element={<PanelAdmina/>}/>
+                <Route path="/Platnosc" element={<Platnosc/>}/>
                 
             </Routes>
         </>

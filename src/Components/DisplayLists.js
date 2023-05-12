@@ -19,6 +19,8 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const DisplayLists = observer(() => {
@@ -29,6 +31,18 @@ const DisplayLists = observer(() => {
   const [produktyList, setProduktyList] = useState([]);
   const [openList, setOpenList] = useState({});
 
+
+  const errorNotify = (string) =>
+    toast.error(string, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   //check if user is signed in
   useEffect(() => {
     if (!user) {
@@ -84,6 +98,7 @@ const DisplayLists = observer(() => {
       if (response.status === 200) {
         console.log(lista_id);
         getNazwyList();
+        errorNotify("Usunięto listę!");
       }
     }
     catch (error) {
@@ -98,6 +113,7 @@ const DisplayLists = observer(() => {
       });
       if (response.status === 200) {
         getProduktyList();
+        errorNotify("Usunięto produkt z listy");
       }
     }
     catch (error) {
@@ -161,6 +177,7 @@ const DisplayLists = observer(() => {
       </List>
     </Box>
   )}
+  <ToastContainer />
 </>
 );
 });

@@ -7,6 +7,8 @@ import globalStore from "../Store/GlobalStore";
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddToList = ({productID}) => {
 
@@ -15,6 +17,18 @@ const AddToList = ({productID}) => {
           mode: "dark",
         },
       });
+
+    const succcesNotify = (string) =>
+    toast.success(string, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
     const user = globalStore.getUser;
     const [isLogged, setIsLogged] = useState(false);
@@ -69,6 +83,7 @@ const AddToList = ({productID}) => {
       if (response.status === 200) {
         console.log("added Succesfully");
         handleClose();
+        succcesNotify("Dodano do listy!");
       }
     }
     catch (error) {
@@ -101,6 +116,7 @@ const AddToList = ({productID}) => {
               </Box>
               </ThemeProvider>
             </Modal>
+            <ToastContainer/>
             {/* end modal content */}
             </>
      );

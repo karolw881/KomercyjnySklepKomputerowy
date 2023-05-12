@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Maj 2023, 12:41
+-- Czas generowania: 12 Maj 2023, 14:45
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -95,7 +95,11 @@ INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
 (1, 29, 1, 86),
 (1, 2, 1, 87),
 (1, 2, 1, 88),
-(1, 2, 1, 89);
+(1, 10, 1, 90),
+(8, 8, 1, 91),
+(8, 11, 1, 92),
+(8, 1, 1, 93),
+(8, 4, 1, 94);
 
 -- --------------------------------------------------------
 
@@ -114,11 +118,12 @@ CREATE TABLE `lista` (
 --
 
 INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
-(3, 1, 'Komputer unlimited kaska'),
-(4, 2, 'xs'),
 (15, 1, 'hehe2'),
-(20, 1, 'nowa lista test'),
-(21, 1, 'new listatest6767');
+(21, 1, 'new listatest6767'),
+(24, 1, 'Kino domowe'),
+(25, 8, 'na narty'),
+(26, 1, 'Na studia'),
+(27, 1, 'Do pracy');
 
 -- --------------------------------------------------------
 
@@ -129,25 +134,27 @@ INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
 CREATE TABLE `lista_produkty` (
   `lista_id` int(11) DEFAULT NULL,
   `id_produktu` int(11) DEFAULT NULL,
-  `ilosc` int(11) NOT NULL DEFAULT 1
+  `ilosc` int(11) NOT NULL DEFAULT 1,
+  `id_rekordu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `lista_produkty`
 --
 
-INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`) VALUES
-(3, 1, 1),
-(3, 2, 1),
-(3, 3, 1),
-(3, 25, 25),
-(21, 4, 1),
-(3, 2, 1),
-(20, 2, 1),
-(20, 3, 1),
-(20, 3, 1),
-(15, 8, 1),
-(15, 8, 1);
+INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`, `id_rekordu`) VALUES
+(21, 4, 1, 1),
+(15, 8, 1, 3),
+(24, 14, 1, 6),
+(25, 8, 1, 7),
+(21, 3, 1, 10),
+(24, 3, 1, 11),
+(24, 6, 1, 13),
+(21, 1, 1, 14),
+(21, 1, 1, 15),
+(27, 13, 1, 19),
+(26, 13, 1, 20),
+(27, 3, 1, 21);
 
 -- --------------------------------------------------------
 
@@ -406,6 +413,7 @@ ALTER TABLE `lista`
 -- Indeksy dla tabeli `lista_produkty`
 --
 ALTER TABLE `lista_produkty`
+  ADD PRIMARY KEY (`id_rekordu`),
   ADD KEY `lista_id` (`lista_id`),
   ADD KEY `id_produktu` (`id_produktu`);
 
@@ -451,13 +459,19 @@ ALTER TABLE `zamowienia_produkty`
 -- AUTO_INCREMENT dla tabeli `koszyk_produkty`
 --
 ALTER TABLE `koszyk_produkty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT dla tabeli `lista`
 --
 ALTER TABLE `lista`
-  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT dla tabeli `lista_produkty`
+--
+ALTER TABLE `lista_produkty`
+  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT dla tabeli `opinie`

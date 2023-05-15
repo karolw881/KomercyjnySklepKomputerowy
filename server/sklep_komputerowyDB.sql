@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Maj 2023, 14:26
+-- Czas generowania: 15 Maj 2023, 16:07
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 8.1.1
 
@@ -257,24 +257,24 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 (5, 'Monitor LG UltraGear 27GL83A-B', '1999.99', 'montor2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (6, 'Telewizor LG OLED55C14LB', '7199.99', 'dummy.png', 'Opis produktu...', 'Telewizory', 'Specyfikacje produktu...'),
 (7, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1399.99', 'sluchawki2.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
-(8, 'Klawiatura mechaniczna HyperX Alloy FPS Pro', '389.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
-(9, 'Procesor Intel Core i7-11700K', '2299.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
-(10, 'Smartfon Xiaomi Mi 11 Lite 5G', '1499.99', 'dummy.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje produktu...'),
-(11, 'Klawiatura membranowa Logitech K120', '49.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
-(12, 'Mysz bezprzewodowa Logitech MX Master 3', '479.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(8, 'Klawiatura mechaniczna HyperX Alloy FPS Pro', '389.99', 'klawiaturamembranowa2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(9, 'Procesor Intel Core i7-11700K', '2299.99', 'procesor2.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
+(10, 'Smartfon Xiaomi Mi 11 Lite 5G', '1499.99', 'Xiaomi2.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje produktu...'),
+(11, 'Klawiatura membranowa Logitech K120', '49.99', 'klawiaturamembranowa2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(12, 'Mysz bezprzewodowa Logitech MX Master 3', '479.99', 'mysz2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (13, 'Karta graficzna GeForce RTX 3080 Ti', '7999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (14, 'Słuchawki douszne JBL Tune 215TWS', '199.99', 'jbl2.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
 (15, 'Smartfon iPhone 13 Pro', '5699.99', 'dummy.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje'),
 (16, 'Słuchawki bezprzewodowe JBL Tune 220TWS', '249.99', 'sluchawki2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (17, 'Klawiatura mechaniczna Logitech G213 Prodigy', '249.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
-(18, 'Mysz bezprzewodowa Logitech MX Anywhere 3', '399.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(18, 'Mysz bezprzewodowa Logitech MX Anywhere 3', '399.99', 'myszbezprzewodowaLogitech.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (19, 'Kabel HDMI 2.0', '49.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
-(20, 'Głośnik Bluetooth JBL Flip 5', '499.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(20, 'Głośnik Bluetooth JBL Flip 5', '499.99', 'GlosnikBlutoothJBLFilp52.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (21, 'Telewizor Samsung UE50TU7172', '2599.99', 'dummy.png', 'Opis produktu...', 'Telewizory', 'Specyfikacje produktu...'),
 (22, 'Kamera internetowa Logitech C920 HD Pro', '499.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (23, 'Drukarka laserowa HP LaserJet Pro M15w', '299.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (24, 'Procesor Intel Core i9-12900K', '3399.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
-(25, 'Karta graficzna Nvidia GeForce RTX 3080', '5999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
+(25, 'Karta graficzna Nvidia GeForce RTX 3080', '5999.99', 'kartagraficzna2.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (26, 'Dysk SSD Samsung 970 EVO Plus 1TB', '999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (27, 'Pamięć RAM Corsair Vengeance RGB Pro 32GB', '999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (28, 'Smartwatch Samsung Galaxy Watch 4', '1199.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 12 Maj 2023, 14:45
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Czas generowania: 15 Maj 2023, 14:26
+-- Wersja serwera: 10.4.22-MariaDB
+-- Wersja PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `koszyk` (
   `koszyk_id` int(11) NOT NULL,
   `uzytkownik_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `koszyk`
@@ -65,13 +65,23 @@ CREATE TABLE `koszyk_produkty` (
   `id_produktu` int(11) DEFAULT NULL,
   `ilosc` int(11) NOT NULL DEFAULT 1,
   `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `koszyk_produkty`
 --
 
 INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
+(1, 2, 1, 1),
+(1, 3, 1, 2),
+(1, 10, 1, 3),
+(1, 4, 10, 4),
+(1, 11, 11, 5),
+(1, 17, 10, 11),
+(1, 21, 10, 12),
+(1, 31, 10, 13),
+(2, 2, 1, 15),
+(2, 3, 1, 16),
 (3, 3, 1, 17),
 (4, 3, 1, 18),
 (5, 3, 1, 19),
@@ -79,27 +89,12 @@ INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
 (2, 10, 1, 21),
 (2, 1, 1, 24),
 (2, 1, 1, 25),
+(2, 1, 1, 26),
+(1, 4, 1, 27),
 (16, 1, 1, 47),
 (16, 1, 1, 51),
 (16, 2, 1, 53),
-(16, 3, 1, 54),
-(2, 4, 1, 76),
-(2, 1, 1, 77),
-(2, 8, 1, 78),
-(2, 11, 1, 79),
-(2, 29, 1, 80),
-(1, 1, 1, 81),
-(1, 3, 1, 82),
-(1, 29, 1, 83),
-(1, 3, 1, 85),
-(1, 29, 1, 86),
-(1, 2, 1, 87),
-(1, 2, 1, 88),
-(1, 10, 1, 90),
-(8, 8, 1, 91),
-(8, 11, 1, 92),
-(8, 1, 1, 93),
-(8, 4, 1, 94);
+(16, 3, 1, 54);
 
 -- --------------------------------------------------------
 
@@ -111,19 +106,16 @@ CREATE TABLE `lista` (
   `lista_id` int(11) NOT NULL,
   `uzytkownik_id` int(11) DEFAULT NULL,
   `nazwa_listy` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `lista`
 --
 
 INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
-(15, 1, 'hehe2'),
-(21, 1, 'new listatest6767'),
-(24, 1, 'Kino domowe'),
-(25, 8, 'na narty'),
-(26, 1, 'Na studia'),
-(27, 1, 'Do pracy');
+(1, 1, 'Na studia'),
+(2, 1, 'Do pracy'),
+(3, 1, 'Komputer unlimited kaska');
 
 -- --------------------------------------------------------
 
@@ -134,27 +126,30 @@ INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
 CREATE TABLE `lista_produkty` (
   `lista_id` int(11) DEFAULT NULL,
   `id_produktu` int(11) DEFAULT NULL,
-  `ilosc` int(11) NOT NULL DEFAULT 1,
-  `id_rekordu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ilosc` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `lista_produkty`
 --
 
-INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`, `id_rekordu`) VALUES
-(21, 4, 1, 1),
-(15, 8, 1, 3),
-(24, 14, 1, 6),
-(25, 8, 1, 7),
-(21, 3, 1, 10),
-(24, 3, 1, 11),
-(24, 6, 1, 13),
-(21, 1, 1, 14),
-(21, 1, 1, 15),
-(27, 13, 1, 19),
-(26, 13, 1, 20),
-(27, 3, 1, 21);
+INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`) VALUES
+(1, 1, 1),
+(1, 2, 1),
+(1, 20, 2),
+(1, 22, 1),
+(1, 23, 2),
+(1, 3, 1),
+(1, 4, 1),
+(2, 1, 1),
+(2, 2, 1),
+(2, 13, 1),
+(2, 14, 1),
+(2, 15, 1),
+(3, 1, 1),
+(3, 2, 1),
+(3, 3, 1),
+(3, 25, 25);
 
 -- --------------------------------------------------------
 
@@ -168,7 +163,7 @@ CREATE TABLE `opinie` (
   `uzytkownik_id` int(11) DEFAULT NULL,
   `tresc` text DEFAULT NULL,
   `ocena` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `opinie`
@@ -248,29 +243,29 @@ CREATE TABLE `produkty` (
   `opis` text NOT NULL,
   `kategoria` varchar(100) NOT NULL,
   `specyfikacje` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `produkty`
 --
 
 INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kategoria`, `specyfikacje`) VALUES
-(1, 'Komputer stacjonarny HP Pavilion 590-p0005nw', '2199.99', 'komputer.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
+(1, 'Komputer stacjonarny HP Pavilion 590-p0005nw', '2199.99', 'hp2.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
 (2, 'Smartfon Samsung Galaxy A52', '1499.99', 'smartfon.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje produktu...'),
 (3, 'Konsola PlayStation 5', '2399.99', 'ps5.png', 'Opis produktu...', 'Gaming', 'Specyfikacje produktu...'),
-(4, 'Laptop Lenovo IdeaPad 3 15ITL6', '3299.99', 'laptop.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
-(5, 'Monitor LG UltraGear 27GL83A-B', '1999.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(4, 'Laptop Lenovo IdeaPad 3 15ITL6', '3299.99', 'lenovo1.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
+(5, 'Monitor LG UltraGear 27GL83A-B', '1999.99', 'montor2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (6, 'Telewizor LG OLED55C14LB', '7199.99', 'dummy.png', 'Opis produktu...', 'Telewizory', 'Specyfikacje produktu...'),
-(7, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1399.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
+(7, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1399.99', 'sluchawki2.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
 (8, 'Klawiatura mechaniczna HyperX Alloy FPS Pro', '389.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (9, 'Procesor Intel Core i7-11700K', '2299.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
 (10, 'Smartfon Xiaomi Mi 11 Lite 5G', '1499.99', 'dummy.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje produktu...'),
 (11, 'Klawiatura membranowa Logitech K120', '49.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (12, 'Mysz bezprzewodowa Logitech MX Master 3', '479.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (13, 'Karta graficzna GeForce RTX 3080 Ti', '7999.99', 'dummy.png', 'Opis produktu...', 'Podzespoly', 'Specyfikacje produktu...'),
-(14, 'Słuchawki douszne JBL Tune 215TWS', '199.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
+(14, 'Słuchawki douszne JBL Tune 215TWS', '199.99', 'jbl2.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
 (15, 'Smartfon iPhone 13 Pro', '5699.99', 'dummy.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje'),
-(16, 'Słuchawki bezprzewodowe JBL Tune 220TWS', '249.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
+(16, 'Słuchawki bezprzewodowe JBL Tune 220TWS', '249.99', 'sluchawki2.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (17, 'Klawiatura mechaniczna Logitech G213 Prodigy', '249.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (18, 'Mysz bezprzewodowa Logitech MX Anywhere 3', '399.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (19, 'Kabel HDMI 2.0', '49.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
@@ -285,9 +280,9 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 (28, 'Smartwatch Samsung Galaxy Watch 4', '1199.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
 (29, 'Gra Cyberpunk 2077', '199.99', 'dummy.png', 'Opis produktu...', 'Gaming', 'Specyfikacje produktu...'),
 (30, 'Słuchawki bezprzewodowe Sony WH-1000XM4', '1299.99', 'dummy.png', 'Opis produktu...', 'Akcesoria', 'Specyfikacje produktu...'),
-(31, 'Laptop Lenovo ThinkPad', '2999.99', 'dummy.png', 'Laptop dla wymagających użytkowników', 'Polecane', 'Procesor: Intel Core i7, RAM: 16GB, Dysk: 512GB SSD'),
+(31, 'Laptop Lenovo ThinkPad', '2999.99', 'thinkpad2.png', 'Laptop dla wymagających użytkowników', 'Polecane', 'Procesor: Intel Core i7, RAM: 16GB, Dysk: 512GB SSD'),
 (32, 'Komputer stacjonarny HP', '3499.99', 'dummy.png', 'Komputer idealny do pracy biurowej', 'Polecane', 'Procesor: Intel Core i5, RAM: 8GB, Dysk: 1TB HDD'),
-(33, 'Smartfon Samsung Galaxy', '1499.99', 'dummy.png', 'Najnowszy model flagowy od Samsunga', 'Polecane', 'Ekran: 6,5 cala, Procesor: Exynos 2100, RAM: 8GB, Pamięć wewnętrzna: 256GB'),
+(33, 'Smartfon Samsung Galaxy', '1499.99', 'samsung2.png', 'Najnowszy model flagowy od Samsunga', 'Polecane', 'Ekran: 6,5 cala, Procesor: Exynos 2100, RAM: 8GB, Pamięć wewnętrzna: 256GB'),
 (34, 'Tablet Apple iPad', '1999.99', 'dummy.png', 'Najnowszy model iPada z ekranem Retina', 'Polecane', 'Ekran: 10,2 cala, Procesor: A14 Bionic, Pamięć wewnętrzna: 128GB'),
 (35, 'Klawiatura mechaniczna Logitech', '399.99', 'dummy.png', 'Profesjonalna klawiatura mechaniczna z podświetleniem RGB', 'Polecane', 'Typ przełączników: Romer-G Tactile, Podświetlenie: RGB, Klawisze programowalne'),
 (36, 'Mysz gamingowa Razer', '249.99', 'dummy.png', 'Mysz dla wymagających graczy', 'Polecane', 'Czułość: 16000 DPI, Podświetlenie: RGB, Liczba przycisków: 7'),
@@ -308,7 +303,7 @@ CREATE TABLE `uzytkownicy` (
   `login` varchar(50) DEFAULT NULL,
   `haslo` varchar(50) DEFAULT NULL,
   `rola` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `uzytkownicy`
@@ -330,7 +325,7 @@ INSERT INTO `uzytkownicy` (`id_uzytkownika`, `imie`, `email`, `login`, `haslo`, 
 (13, 'KrzysztofKonon', 'konon@wp.pl', 'kononowicz', 'haslo1234', NULL),
 (14, 'Major', 'szkolna@wp.pl', 'major', 'haslo1234', NULL),
 (16, 'test1', 'test@wp.pl', 'testowy', 'haslo1234', NULL),
-(17, 'testowy9', 'sfsdfds@wp.pl', 'loginxd', 'haslo1234', NULL);
+(17, 'twoj ', 'email@wp.pl', 'HARRYPOTTER', 'abc123abc123', NULL);
 
 --
 -- Wyzwalacze `uzytkownicy`
@@ -352,7 +347,7 @@ CREATE TABLE `zamowienia` (
   `id_zamowienia` int(11) NOT NULL,
   `id_uzytkownika` int(11) NOT NULL,
   `data_zamowienia` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `zamowienia`
@@ -372,7 +367,7 @@ CREATE TABLE `zamowienia_produkty` (
   `id_zamowienia` int(11) NOT NULL,
   `id_produktu` int(11) NOT NULL,
   `ilosc` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `zamowienia_produkty`
@@ -413,7 +408,6 @@ ALTER TABLE `lista`
 -- Indeksy dla tabeli `lista_produkty`
 --
 ALTER TABLE `lista_produkty`
-  ADD PRIMARY KEY (`id_rekordu`),
   ADD KEY `lista_id` (`lista_id`),
   ADD KEY `id_produktu` (`id_produktu`);
 
@@ -459,19 +453,7 @@ ALTER TABLE `zamowienia_produkty`
 -- AUTO_INCREMENT dla tabeli `koszyk_produkty`
 --
 ALTER TABLE `koszyk_produkty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
-
---
--- AUTO_INCREMENT dla tabeli `lista`
---
-ALTER TABLE `lista`
-  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT dla tabeli `lista_produkty`
---
-ALTER TABLE `lista_produkty`
-  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT dla tabeli `opinie`
@@ -518,7 +500,6 @@ ALTER TABLE `lista`
 -- Ograniczenia dla tabeli `lista_produkty`
 --
 ALTER TABLE `lista_produkty`
-  ADD CONSTRAINT `fk_lista_id` FOREIGN KEY (`lista_id`) REFERENCES `lista` (`lista_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `lista_produkty_ibfk_1` FOREIGN KEY (`lista_id`) REFERENCES `lista` (`lista_id`),
   ADD CONSTRAINT `lista_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 

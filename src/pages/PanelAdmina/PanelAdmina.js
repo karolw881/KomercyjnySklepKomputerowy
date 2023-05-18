@@ -4,6 +4,7 @@ import Categories from "../../Components/Categories";
 import { observer } from "mobx-react";
 import globalStore from "../../Store/GlobalStore";
 import { useState, useEffect } from "react";
+import AddProductModal from "./AddProductModal";
 
 const PanelAdmina = () => {
     const user = globalStore.getUser;
@@ -28,9 +29,10 @@ const PanelAdmina = () => {
         <NavBar />
         <Categories />
         {!isAdmin && <h1>Access denied</h1>}
-        {isAdmin && (
+        {isAdmin && (<div style={{textAlign:"center"}}>
           <h1>Witaj Adminie {user?.imie}</h1>
-          
+            <AddProductModal />
+          </div>
         )}
         <Footer />
         </>

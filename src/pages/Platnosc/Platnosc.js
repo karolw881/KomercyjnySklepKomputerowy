@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import globalStore from '../../Store/GlobalStore';
+import axios from 'axios';
+
 
 function Copyright() {
   return (
@@ -53,8 +56,32 @@ const theme = createTheme({
 export default function Platnosc() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const user = globalStore.getUser;
+  const addOrder = async () => {
+    try {
+        const user_id = user.id_uzytkownika;
+        const response = await axios.post("http://localhost:3001/api/addOrder", {
+            user_id
+        });
+        if(response.status === 200)
+        {
+            console.log("dodano zamowienie!");
+        }
+    }
+
+    catch(error)
+    {
+        console.error(error);
+    }
+};
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+
+    if(activeStep === 2)
+    {
+      addOrder();
+    }
   };
 
   const handleBack = () => {
@@ -96,7 +123,7 @@ export default function Platnosc() {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-                Thank you for your order.
+                Dziękujemy za zamówienie!
               </Typography>
               <Typography variant="subtitle1">
                 Your order number is #2001539. We have emailed your order

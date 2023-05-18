@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Maj 2023, 18:01
+-- Czas generowania: 18 Maj 2023, 20:29
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -76,13 +76,11 @@ INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
 (3, 3, 1, 17),
 (4, 3, 1, 18),
 (5, 3, 1, 19),
-(4, 2, 1, 20),
 (2, 10, 1, 21),
 (2, 1, 1, 24),
 (2, 1, 1, 25),
 (16, 1, 1, 47),
 (16, 1, 1, 51),
-(16, 2, 1, 53),
 (16, 3, 1, 54),
 (2, 4, 1, 76),
 (2, 1, 1, 77),
@@ -93,14 +91,15 @@ INSERT INTO `koszyk_produkty` (`koszyk_id`, `id_produktu`, `ilosc`, `id`) VALUES
 (8, 11, 1, 92),
 (8, 1, 1, 93),
 (8, 4, 1, 94),
-(1, 13, 1, 96),
 (1, 1, 1, 97),
 (1, 4, 1, 98),
 (1, 3, 1, 99),
 (18, 1, 1, 100),
 (18, 4, 1, 101),
 (18, 21, 1, 102),
-(18, 13, 1, 103);
+(18, 13, 1, 103),
+(1, 9, 1, 104),
+(1, NULL, 1, 106);
 
 -- --------------------------------------------------------
 
@@ -123,7 +122,8 @@ INSERT INTO `lista` (`lista_id`, `uzytkownik_id`, `nazwa_listy`) VALUES
 (25, 8, 'na narty'),
 (26, 1, 'Na studia'),
 (27, 1, 'Do pracy'),
-(29, 18, 'Kino domowe');
+(29, 18, 'Kino domowe'),
+(30, 1, 'test');
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,8 @@ INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`, `id_rekordu`) 
 (27, 3, 1, 21),
 (29, 16, 1, 23),
 (26, 3, 1, 25),
-(27, 29, 1, 26);
+(27, 29, 1, 26),
+(30, 45, 1, 27);
 
 -- --------------------------------------------------------
 
@@ -175,9 +176,7 @@ CREATE TABLE `opinie` (
 INSERT INTO `opinie` (`opinia_id`, `produkt_id`, `uzytkownik_id`, `tresc`, `ocena`) VALUES
 (1, 1, 2, 'Świetny produkt!', 5),
 (2, 1, 3, 'Słaba jakość wykonania', 2),
-(3, 2, 1, 'Dobrze trzyma temperaturę', 4),
 (4, 1, 1, 'Bardzo dobry produkt.', 5),
-(5, 2, 2, 'Nie polecam.', 2),
 (6, 3, 3, 'Jakość produktu jest niska.', 1),
 (7, 4, 4, 'Szybka dostawa.', 4),
 (8, 5, 5, 'Cena jest przystępna.', 4),
@@ -216,7 +215,6 @@ INSERT INTO `opinie` (`opinia_id`, `produkt_id`, `uzytkownik_id`, `tresc`, `ocen
 (41, 38, 14, 'Bardzo miły kontakt z obsługą klienta.', 5),
 (42, 39, 6, 'Łatwe w obsłudze, nawet dla początkujących.', 4),
 (43, 1, 2, 'Nie spełnił moich oczekiwań, nie polecam.', 2),
-(44, 2, 7, 'Świetna jakość wykonania, polecam.', 5),
 (45, 3, 9, 'Dobra jakość dźwięku, ale trochę za drogi.', 4),
 (46, 4, 5, 'Produkt działa bez zarzutu, polecam.', 5),
 (47, 5, 12, 'Szybka dostawa i profesjonalna obsługa klienta.', 5),
@@ -254,7 +252,6 @@ CREATE TABLE `produkty` (
 
 INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kategoria`, `specyfikacje`) VALUES
 (1, 'Komputer stacjonarny HP Pavilion 590-p0005nw', '2199.99', 'komputer.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
-(2, 'Smartfon Samsung Galaxy A52', '1499.99', 'smartfon.png', 'Opis produktu...', 'Smartfony', 'Specyfikacje produktu...'),
 (3, 'Konsola PlayStation 5', '2399.99', 'ps5.png', 'Opis produktu...', 'Gaming', 'Specyfikacje produktu...'),
 (4, 'Laptop Lenovo IdeaPad 3 15ITL6', '3299.99', 'laptop.png', 'Opis produktu...', 'Komputery', 'Specyfikacje produktu...'),
 (5, 'Monitor LG UltraGear 27GL83A-B', '1999.99', 'dummy.png', 'Opis produktu...', 'Peryferia', 'Specyfikacje produktu...'),
@@ -291,7 +288,8 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 (36, 'Mysz gamingowa Razer', '249.99', 'dummy.png', 'Mysz dla wymagających graczy', 'Polecane', 'Czułość: 16000 DPI, Podświetlenie: RGB, Liczba przycisków: 7'),
 (37, 'Słuchawki bezprzewodowe Sony', '899.99', 'dummy.png', 'Słuchawki bezprzewodowe z funkcją redukcji hałasu', 'Polecane', 'Typ bezprzewodowy: Bluetooth 5.0, Czas pracy na baterii: do 30 godzin'),
 (38, 'Monitor Dell UltraSharp', '2799.99', 'dummy.png', 'Profesjonalny monitor z matrycą IPS i rozdzielczością 4K', 'Polecane', 'Rozdzielczość: 3840 x 2160, Przekątna ekranu: 27 cali, Częstotliwość odświeżania: 60 Hz'),
-(39, 'Kamera internetowa Logitech', '449.99', 'dummy.png', 'Kamera internetowa dla profesjonalistów', 'Polecane', 'Rozdzielczość: Full HD 1080p, Kąt widzenia: 90 stopni, Mikrofon: stereo');
+(39, 'Kamera internetowa Logitech', '449.99', 'dummy.png', 'Kamera internetowa dla profesjonalistów', 'Polecane', 'Rozdzielczość: Full HD 1080p, Kąt widzenia: 90 stopni, Mikrofon: stereo'),
+(45, 'Dysk HDD 250GB', '250.00', 'dummy.png', 'Dysk HDD', 'Podzespoly', '250GB');
 
 -- --------------------------------------------------------
 
@@ -359,7 +357,8 @@ CREATE TABLE `zamowienia` (
 
 INSERT INTO `zamowienia` (`id_zamowienia`, `id_uzytkownika`, `data_zamowienia`) VALUES
 (1, 1, '2023-04-06 10:30:00'),
-(2, 2, '2023-04-06 10:33:00');
+(2, 2, '2023-04-06 10:33:00'),
+(3, 1, '2023-05-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -378,7 +377,6 @@ CREATE TABLE `zamowienia_produkty` (
 --
 
 INSERT INTO `zamowienia_produkty` (`id_zamowienia`, `id_produktu`, `ilosc`) VALUES
-(1, 2, 3),
 (1, 4, 2),
 (2, 3, 2);
 
@@ -458,25 +456,31 @@ ALTER TABLE `zamowienia_produkty`
 -- AUTO_INCREMENT dla tabeli `koszyk_produkty`
 --
 ALTER TABLE `koszyk_produkty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT dla tabeli `lista`
 --
 ALTER TABLE `lista`
-  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT dla tabeli `lista_produkty`
 --
 ALTER TABLE `lista_produkty`
-  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT dla tabeli `opinie`
 --
 ALTER TABLE `opinie`
   MODIFY `opinia_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT dla tabeli `produkty`
+--
+ALTER TABLE `produkty`
+  MODIFY `id_produktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
@@ -488,7 +492,7 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `zamowienia`
 --
 ALTER TABLE `zamowienia`
-  MODIFY `id_zamowienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_zamowienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -504,6 +508,7 @@ ALTER TABLE `koszyk`
 -- Ograniczenia dla tabeli `koszyk_produkty`
 --
 ALTER TABLE `koszyk_produkty`
+  ADD CONSTRAINT `fk_koszyk_produkty_produkty` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`) ON DELETE CASCADE,
   ADD CONSTRAINT `koszyk_produkty_ibfk_1` FOREIGN KEY (`koszyk_id`) REFERENCES `koszyk` (`koszyk_id`),
   ADD CONSTRAINT `koszyk_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 
@@ -518,6 +523,7 @@ ALTER TABLE `lista`
 --
 ALTER TABLE `lista_produkty`
   ADD CONSTRAINT `fk_lista_id` FOREIGN KEY (`lista_id`) REFERENCES `lista` (`lista_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_lista_produkty_produkty` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`) ON DELETE CASCADE,
   ADD CONSTRAINT `lista_produkty_ibfk_1` FOREIGN KEY (`lista_id`) REFERENCES `lista` (`lista_id`),
   ADD CONSTRAINT `lista_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 
@@ -525,6 +531,7 @@ ALTER TABLE `lista_produkty`
 -- Ograniczenia dla tabeli `opinie`
 --
 ALTER TABLE `opinie`
+  ADD CONSTRAINT `fk_opinie_produkty` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`) ON DELETE CASCADE,
   ADD CONSTRAINT `opinie_ibfk_1` FOREIGN KEY (`produkt_id`) REFERENCES `produkty` (`id_produktu`),
   ADD CONSTRAINT `opinie_ibfk_2` FOREIGN KEY (`uzytkownik_id`) REFERENCES `uzytkownicy` (`id_uzytkownika`);
 
@@ -538,6 +545,7 @@ ALTER TABLE `zamowienia`
 -- Ograniczenia dla tabeli `zamowienia_produkty`
 --
 ALTER TABLE `zamowienia_produkty`
+  ADD CONSTRAINT `fk_zamowienia_produkty_produkty` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`) ON DELETE CASCADE,
   ADD CONSTRAINT `zamowienia_produkty_ibfk_1` FOREIGN KEY (`id_zamowienia`) REFERENCES `zamowienia` (`id_zamowienia`),
   ADD CONSTRAINT `zamowienia_produkty_ibfk_2` FOREIGN KEY (`id_produktu`) REFERENCES `produkty` (`id_produktu`);
 COMMIT;

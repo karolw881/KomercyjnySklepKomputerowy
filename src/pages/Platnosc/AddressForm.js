@@ -19,39 +19,6 @@ export default function AddressForm() {
         country: ''
       });
 
-    const [valid, setValid] = useState({
-        firstName: false,
-        lastName: false,
-        address1: false,
-        address2: true, // nie jest wymagane
-        city: false,
-        state: false, // jest wymagane
-        zip: false,
-        country: false
-      });
-
-      const regexName = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{2,}$/;
-      const regexAddress = /^[a-zA-Z0-9\s,'-]*$/;
-      const regexCity = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{2,}$/;
-      const regexZipCode = /^[0-9]{2}\-[0-9]{3}$/;
-      const regexCountry = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{2,}$/;
-
-      const validateField = (name, value) => {
-        switch (name) {
-          case 'firstName': return regexName.test(value);
-          case 'lastName': return regexName.test(value);
-          case 'city': return regexCity.test(value);
-          case 'country':
-            return regexName.test(value);
-          case 'address1': return regexAddress.test(value);
-          case 'address2':
-          case 'zip': return regexZipCode.test(value);
-            return regexZipCode.test(value);
-          default:
-            return true;
-        }
-      };
-
     const handleChange = (e) => {
         
         const { name, value } = e.target;

@@ -6,6 +6,7 @@ import { observer } from "mobx-react";
 import globalStore from "../../Store/GlobalStore";
 import { useState, useEffect } from "react";
 import AccountSettings from "../../Components/AccountSettings";
+import Zamowienia from "../../Components/Zamowienia";
 
 const Konto = observer(() => {
     const user = globalStore.getUser;
@@ -21,8 +22,10 @@ const Konto = observer(() => {
         <>
         <NavBar/>
         <Categories/>
-        {isLogged && (
+        {isLogged && (<>
           <AccountSettings />
+          <Zamowienia />
+          </>
         )}
 
         {!isLogged && (

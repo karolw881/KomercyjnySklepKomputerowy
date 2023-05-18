@@ -199,6 +199,55 @@ app.post('/api/removeListProduct', (req, res) => {
   });
 });
 
+// dodaj zamowienie 
+app.post('/api/addOrder', (req, res) => {
+  const { user_id } = req.body;
+  db.query('INSERT INTO zamowienia (id_uzytkownika, data_zamowienia) VALUES( ?, CURDATE());', [user_id], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+// get zamowienia
+app.post('/api/getOrder', (req, res) => {
+  const { user_id } = req.body;
+  db.query('SELECT id_zamowienia, id_uzytkownika, data_zamowienia FROM zamowienia WHERE id_uzytkownika = ?;', [user_id], (err, results) => {
+    if (err) throw err;
+    const listOrders = results.map(result => ({
+      zamowienie_id: result.id_zamowienia,
+      zamowienie_data: result.data_zamowienia,
+    }));
+    res.status(200).json(listOrders);
+  });
+});
+
+//add product to database
+app.post('/api/addProductDB', (req, res) => {
+  const { nazwa, cena, zdjecie, opis, kategoria, specyfikacje } = req.body;
+  db.query('INSERT INTO produkty (nazwa, cena, zdjecie, opis, kategoria, specyfikacje) VALUES (?, ?, ?, ?, ?, ?);', [nazwa, cena, zdjecie, opis, kategoria, specyfikacje], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+//delete product from database
+app.post('/api/deleteProductDB', (req, res) => {
+  const { id_produktu } = req.body;
+  db.query('DELETE FROM produkty WHERE id_produktu = ?', [id_produktu], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+//update database product
+app.post('/api/updateProduct', (req, res) => {
+  const { nazwa, cena, zdjecie, opis, kategoria, specyfikacje, id_produktu } = req.body;
+  db.query('UPDATE produkty SET nazwa = ?, cena = ?, zdjecie = ?, opis = ?, kategoria = ?, specyfikacje = ? WHERE id_produktu = ?', [nazwa, cena, zdjecie, opis, kategoria, specyfikacje, id_produktu], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
 });

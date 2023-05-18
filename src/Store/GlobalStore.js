@@ -35,7 +35,7 @@ class GlobalStore {
 
   setUsersPaymentDetails(details)
   {
-    this.getUsersPaymentDetails = details;
+    this.usersPaymentDetails = details;
   }
 
   setUsersShippingData(data)

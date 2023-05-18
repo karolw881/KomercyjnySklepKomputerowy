@@ -5,10 +5,12 @@ import Categories from "../../Components/Categories";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AddToCart from "../../Components/AddToCart";
 
 const ProductInfo = () => {
   const location = useLocation();
   const product = location.state;
+  const productID = product.id_produktu;
 
   const [oceny, setOceny] = useState([]);
 
@@ -38,7 +40,7 @@ if (response.status === 200) {
         {product?.nazwa}
       </Typography>
       <Typography sx={{ textAlign: "center", margin: 6 }} variant="h3" gutterBottom>
-        {product?.cena}
+        {product?.cena + " zł"}
       </Typography>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img

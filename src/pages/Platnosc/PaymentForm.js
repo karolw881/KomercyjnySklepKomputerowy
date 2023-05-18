@@ -4,8 +4,22 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { useState, useEffect } from 'react';
+import globalStore from '../../Store/GlobalStore';
 
 export default function PaymentForm() {
+
+  const [paymentInfo, setPaymentInfo] = useState({});
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    setPaymentInfo((prevPaymentInfo) => ({
+      ...prevPaymentInfo,
+      [id]: value
+    }));
+    globalStore.setUsersPaymentDetails(paymentInfo); // Ustawienie danych w globalStore
+  };
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -20,6 +34,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-name"
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -30,6 +45,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-number"
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -40,6 +56,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -51,6 +68,7 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>

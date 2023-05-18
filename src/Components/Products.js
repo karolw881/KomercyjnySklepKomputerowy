@@ -16,6 +16,9 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import AddToList from "./AddToList";
 import DeleteIcon from '@mui/icons-material/Delete'; 
+import DeleteProduct from "./DeleteProduct";
+import EditProduct from "./EditProduct";
+import AddToCart from "./AddToCart";
 
 
 
@@ -105,7 +108,7 @@ const Products = observer(( {kategoria} ) => {
             <p>{product.cena + ' zł'}</p>
             <p>{product.specyfikacje}</p>
             </Link>
-            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><IconButton onClick={() => addProduct(product.id_produktu)}><AddIcon /></IconButton>{false && <IconButton><DeleteIcon /></IconButton>}</div>}
+            {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><AddToCart produktID={product.id_produktu}/>{isAdmin && (<> <IconButton><DeleteProduct produktID={product.id_produktu}/></IconButton> <IconButton><EditProduct produktID={product.id_produktu}/></IconButton> </>)}</div>}
             
             
           </Grid>

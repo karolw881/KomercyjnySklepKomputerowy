@@ -46,6 +46,7 @@ export default function Review() {
     const [isLogged, setIsLogged] = useState(false);
     const [koszyk,setKoszyk] = useState([]);
     const [addresses, setAddresses] = useState([]);
+    const [payments, setPayments] = useState([]);
 
     const getKoszyk = async () => {
         try {
@@ -72,6 +73,7 @@ export default function Review() {
           setIsLogged(true);
           getKoszyk();
           setAddresses(globalStore.getUsersShippingData);  
+          setPayments(globalStore.getUsersPaymentDetails);
         }
         
       }, []);
@@ -110,16 +112,22 @@ export default function Review() {
             Płatność
           </Typography>
           <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
+            
+              
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
+                  <Typography gutterBottom>{payments.cardName}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{payments.cardNumber}</Typography>
                 </Grid>
-              </React.Fragment>
-            ))}
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payments.expDate}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payments.cvv}</Typography>
+                </Grid>
+             
+            
           </Grid>
         </Grid>
       </Grid>

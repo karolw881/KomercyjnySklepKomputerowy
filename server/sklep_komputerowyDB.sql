@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Maj 2023, 20:29
+-- Czas generowania: 20 Maj 2023, 16:04
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -153,7 +153,8 @@ INSERT INTO `lista_produkty` (`lista_id`, `id_produktu`, `ilosc`, `id_rekordu`) 
 (29, 16, 1, 23),
 (26, 3, 1, 25),
 (27, 29, 1, 26),
-(30, 45, 1, 27);
+(24, 1, 1, 28),
+(30, 46, 1, 29);
 
 -- --------------------------------------------------------
 
@@ -228,7 +229,11 @@ INSERT INTO `opinie` (`opinia_id`, `produkt_id`, `uzytkownik_id`, `tresc`, `ocen
 (55, 13, 14, 'Produkt jest przeciętny, nie zachwycił mnie.', 3),
 (56, 14, 6, 'Produkt jest bardzo wygodny w użyciu.', 4),
 (57, 15, 2, 'Bardzo dobry stosunek jakości do ceny.', 5),
-(58, 16, 7, 'Nie jestem zadowolony z jakości produktu.', 2);
+(58, 16, 7, 'Nie jestem zadowolony z jakości produktu.', 2),
+(62, 1, 1, 'Testowa opinia', 1),
+(63, 10, 1, 'Działa niezawodnie :)', 5),
+(64, 46, 1, 'Wolny strasznie lepiej kupić SSD', 2),
+(65, 1, 1, 'Super komputer liga śmiga', 4);
 
 -- --------------------------------------------------------
 
@@ -289,7 +294,7 @@ INSERT INTO `produkty` (`id_produktu`, `nazwa`, `cena`, `zdjecie`, `opis`, `kate
 (37, 'Słuchawki bezprzewodowe Sony', '899.99', 'dummy.png', 'Słuchawki bezprzewodowe z funkcją redukcji hałasu', 'Polecane', 'Typ bezprzewodowy: Bluetooth 5.0, Czas pracy na baterii: do 30 godzin'),
 (38, 'Monitor Dell UltraSharp', '2799.99', 'dummy.png', 'Profesjonalny monitor z matrycą IPS i rozdzielczością 4K', 'Polecane', 'Rozdzielczość: 3840 x 2160, Przekątna ekranu: 27 cali, Częstotliwość odświeżania: 60 Hz'),
 (39, 'Kamera internetowa Logitech', '449.99', 'dummy.png', 'Kamera internetowa dla profesjonalistów', 'Polecane', 'Rozdzielczość: Full HD 1080p, Kąt widzenia: 90 stopni, Mikrofon: stereo'),
-(45, 'Dysk HDD 250GB', '250.00', 'dummy.png', 'Dysk HDD', 'Podzespoly', '250GB');
+(46, 'Dysk Twardy HDD 500GB', '300.00', 'dummy.png', 'Dysk HDD twardy', 'Promocje', 'Bardzo wolny ale tani');
 
 -- --------------------------------------------------------
 
@@ -456,7 +461,7 @@ ALTER TABLE `zamowienia_produkty`
 -- AUTO_INCREMENT dla tabeli `koszyk_produkty`
 --
 ALTER TABLE `koszyk_produkty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT dla tabeli `lista`
@@ -468,19 +473,19 @@ ALTER TABLE `lista`
 -- AUTO_INCREMENT dla tabeli `lista_produkty`
 --
 ALTER TABLE `lista_produkty`
-  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_rekordu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT dla tabeli `opinie`
 --
 ALTER TABLE `opinie`
-  MODIFY `opinia_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `opinia_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT dla tabeli `produkty`
 --
 ALTER TABLE `produkty`
-  MODIFY `id_produktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_produktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`

@@ -6,6 +6,9 @@ import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddToCart from "../../Components/AddToCart";
+import AddReview from "../../Components/AddReview";
+import AddToList from "../../Components/AddToList";
+import RatingAVG from "../../Components/RatingAVG";
 
 const ProductInfo = () => {
   const location = useLocation();
@@ -37,10 +40,10 @@ if (response.status === 200) {
       <NavBar />
       <Categories />
       <Typography sx={{ textAlign: "center", margin: 6 }} variant="h2" gutterBottom>
-        {product?.nazwa}
+        {product?.nazwa} <RatingAVG productID={product?.id_produktu}/>
       </Typography>
       <Typography sx={{ textAlign: "center", margin: 6 }} variant="h3" gutterBottom>
-        {product?.cena + " zł"}
+        {product?.cena + " zł"} <AddToCart produktID={product?.id_produktu}/> <AddToList productID={product?.id_produktu}/> <AddReview productID={product?.id_produktu}/>
       </Typography>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img

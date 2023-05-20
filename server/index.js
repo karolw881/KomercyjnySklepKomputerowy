@@ -248,6 +248,25 @@ app.post('/api/updateProduct', (req, res) => {
   });
 });
 
+//add review
+app.post('/api/addReview', (req, res) => {
+  const { produkt_id, uzytkownik_id, tresc, ocena } = req.body;
+  db.query('INSERT INTO opinie (produkt_id, uzytkownik_id, tresc, ocena) VALUES(?, ?, ?, ?);', [produkt_id, uzytkownik_id, tresc, ocena], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
+app.post('/api/ratingAvg', (req, res) => {
+  const { produkt_id } = req.body;
+  db.query('SELECT AVG(ocena) as srednia FROM opinie WHERE produkt_id = ?', [produkt_id], (err, results) => {
+    if (err) throw err;
+    const AVG = results[0].srednia;
+    res.status(200).json(AVG);
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);
 });

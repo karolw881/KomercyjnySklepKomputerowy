@@ -266,6 +266,15 @@ app.post('/api/ratingAvg', (req, res) => {
   });
 });
 
+//usun produkty wszystkie z koszyka
+app.post('/api/clearCart', (req, res) => {
+  const { user_id } = req.body;
+  db.query('DELETE from koszyk_produkty WHERE koszyk_id = ?;', [user_id], (err) => {
+    if (err) throw err;
+    res.status(200).send();
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Serwer uruchomiony na porcie ${port}`);

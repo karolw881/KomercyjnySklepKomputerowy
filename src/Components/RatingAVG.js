@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import RatingToStars from "./StarRating";
 
 const RatingAVG = ({productID}) => {
     const [avg, setAvg] = useState();
@@ -21,7 +22,7 @@ const RatingAVG = ({productID}) => {
         getAVG();
     });
 
-    return ( <><h5>Średnia ocena: {avg}/5</h5></> );
+    return ( <><h5>Średnia ocena: <RatingToStars averageRating={avg}/></h5></> );
 }
  
 export default RatingAVG;

@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "emailjs-com": "^3.2.0",
     "express": "^4.18.2",
     "formik": "^2.2.9",
     "install": "^0.13.0",
@@ -53,6 +54,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.11.1"
+    "react-router-dom": "^6.11.2"
   }
 }

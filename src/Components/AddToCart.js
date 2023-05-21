@@ -2,8 +2,7 @@ import axios from "axios";
 import globalStore from "../Store/GlobalStore";
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import AddToList from "./AddToList";
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -57,7 +56,7 @@ const AddToCart = ({ produktID }) => {
 
     return (
         <>{isLogged && (<>
-            <IconButton onClick={() => addProduct()}><AddIcon /></IconButton>
+            <IconButton sx={{marginLeft:1}} onClick={() => addProduct()}><AddShoppingCartIcon /></IconButton>
             <ToastContainer/>
             </>
         )}</>

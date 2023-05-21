@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import NavBar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import Categories from "../../Components/Categories";
@@ -9,6 +9,7 @@ import AddToCart from "../../Components/AddToCart";
 import AddReview from "../../Components/AddReview";
 import AddToList from "../../Components/AddToList";
 import RatingAVG from "../../Components/RatingAVG";
+import RatingToStars from "../../Components/StarRating";
 
 const ProductInfo = () => {
   const location = useLocation();
@@ -39,35 +40,56 @@ if (response.status === 200) {
     <>
       <NavBar />
       <Categories />
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h2" gutterBottom>
-        {product?.nazwa} <RatingAVG productID={product?.id_produktu}/>
-      </Typography>
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h3" gutterBottom>
-        {product?.cena + " zł"} <AddToCart produktID={product?.id_produktu}/> <AddToList productID={product?.id_produktu}/> <AddReview productID={product?.id_produktu}/>
-      </Typography>
+      <div style={{display:"flex",flexDirection:"row"}}>
+      <Box sx={{width: 600, marginLeft:25}}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img
-          style={{ display: "flex", width: "20vw", height: "100%" }}
+          style={{ display: "flex", width: "4 0vw", height: "100%",marginTop:"10vh" }}
           src={require(`../../images/${product?.zdjecie}`)}
           alt={product?.nazwa}
         />
       </div>
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h4" gutterBottom>
+      </Box>
+      <Box sx={{width:600, marginLeft:2, paddingTop:10}}>
+      <Typography sx={{ textAlign: "center", marginTop: 6 }} variant="h4" gutterBottom>
+        {product?.nazwa}
+      </Typography>
+      <Typography sx={{textAlign:"center"}} variant="body2">
+          Dodaj do listy<AddToList productID={product?.id_produktu}/>
+      </Typography>
+      <Typography sx={{ textAlign: "center", margin: 2 }} variant="h6" gutterBottom>
+      <RatingAVG productID={product?.id_produktu}/>
+        {"Cena: " + product?.cena + " zł"} 
+        <Typography variant="h6">
+          Dodaj do koszyka<AddToCart produktID={product?.id_produktu} />
+        </Typography>
+         
+      </Typography>
+      </Box>
+      </div>
+      <Typography variant="h3" sx={{textAlign: "center", margin: "auto", borderTop:"0.5px solid white",width:1200 }}>
+          Opis produktu
+      </Typography>
+      <Typography sx={{ textAlign: "justify", margin: "auto", width:800 }} variant="h6" gutterBottom>
         {product?.opis}
       </Typography>
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h5" gutterBottom>
-        {product?.kategoria}
+      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h3" gutterBottom>
+        Specyfikacje
       </Typography>
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h6" gutterBottom>
+      <Typography sx={{ textAlign: "justify", margin: "auto", width:800 }} variant="h6" gutterBottom>
         {product?.specyfikacje}
       </Typography>
-      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h7" gutterBottom>
-        <h1>Oceny użytkownikow:</h1>
+      <Typography sx={{ textAlign: "center", margin: 6 }} variant="h6" gutterBottom>
+      <AddReview productID={product?.id_produktu}/>
+        <h1>Oceny użytkowników:</h1>
         {oceny?.map((ocena) => (
-          <div key={ocena.id}>
-          <Typography variant="body1">{ocena.imie}</Typography>
-          <Typography variant="caption">{ocena.tresc}</Typography>
-          <Typography variant="caption"> Ocena: {ocena.ocena}/5</Typography>
+          <div style={{marginBottom:"5vh", display:"flex",flexDirection:"row", justifyContent:"center"}} key={ocena.id}>
+          <Box sx={{width:200}}>
+            <Typography variant="h6">{ocena.imie}<br/><RatingToStars averageRating={ocena.ocena}/></Typography>
+          </Box>
+          <Box sx={{width:300,paddingTop:2}}>
+          <Typography variant="body1">{ocena.tresc}</Typography>
+          </Box>
         </div>
         ))}
       </Typography>

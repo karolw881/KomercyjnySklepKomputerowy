@@ -125,7 +125,7 @@ const AddReview = ({productID}) => {
 
     return ( 
     <>
-    <Button onClick={handleOpen}>Oceń produkt</Button>
+    <Button sx={{color:"white", backgroundColor:"gray"}} onClick={handleOpen}>Oceń produkt</Button>
     <Modal
               open={open}
               onClose={handleClose}
@@ -160,7 +160,7 @@ const AddReview = ({productID}) => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,color:"white", backgroundColor:"gray" }}
             >
               Dodaj
             </Button>

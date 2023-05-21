@@ -106,7 +106,6 @@ const Products = observer(( {kategoria} ) => {
             <img className="product-img" src={require(`../images/${product.zdjecie}`)} alt={product.nazwa} />
             <h3>{product.nazwa}</h3>
             <p>{product.cena + ' zł'}</p>
-            <p>{product.specyfikacje}</p>
             </Link>
             {isLogged && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><AddToList productID={product.id_produktu} /><AddToCart produktID={product.id_produktu}/>{isAdmin && (<> <IconButton><DeleteProduct produktID={product.id_produktu}/></IconButton> <IconButton><EditProduct produktID={product.id_produktu}/></IconButton> </>)}</div>}
             

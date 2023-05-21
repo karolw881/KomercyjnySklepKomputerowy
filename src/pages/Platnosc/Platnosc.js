@@ -12,11 +12,13 @@ import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import globalStore from '../../Store/GlobalStore';
 import axios from 'axios';
+import sendEmail from '../../Components/Email';
 
 
 function Copyright() {
@@ -55,6 +57,7 @@ const theme = createTheme({
 
 export default function Platnosc() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [koszyk, setKoszyk] = useState([]);
 
   const user = globalStore.getUser;
   const addOrder = async () => {
@@ -75,12 +78,59 @@ export default function Platnosc() {
     }
 };
 
+const getKoszyk = async () => {
+  try {
+      const user_id = user.id_uzytkownika;
+      const response = await axios.post("http://localhost:3001/api/koszyk", {
+          user_id
+      });
+      if(response.status === 200)
+      {
+          setKoszyk(response.data);
+      }
+  }
+
+  catch(error)
+  {
+      console.error(error);
+  }
+};
+
+const clearKoszyk = async () => {
+  try {
+      const user_id = user.id_uzytkownika;
+      const response = await axios.post("http://localhost:3001/api/clearCart", {
+          user_id
+      });
+      if(response.status === 200)
+      {
+          console.log("koszyk wyczyszczono");
+      }
+  }
+
+  catch(error)
+  {
+      console.error(error);
+  }
+};
+
+React.useEffect(() => {
+  getKoszyk();
+}, []);
+
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
 
     if(activeStep === 2)
     {
       addOrder();
+      const formattedKoszyk = koszyk.map((product) => `${product.nazwa} - ${product.cena} zł`).join('\n');
+      const totalPrice = koszyk.reduce((total, product) => total + parseFloat(product.cena), 0);
+      const userAddress = globalStore.getUsersShippingData;
+
+      sendEmail(user.email, 'Twoje zamówienie', formattedKoszyk, totalPrice, userAddress.firstName + " " + userAddress.lastName + "\n" + userAddress.address1 + " " + userAddress.address2 + "\n" + userAddress.city + ", " + userAddress.state + "\n" + userAddress.zip + ", " + userAddress.country);
+      clearKoszyk();
     }
   };
 
@@ -126,9 +176,7 @@ export default function Platnosc() {
                 Dziękujemy za zamówienie!
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
+                Twoje zamówienie jest w trakcie przygotowywania. Szczegóły wyślemy na twojego maila!
               </Typography>
             </React.Fragment>
           ) : (

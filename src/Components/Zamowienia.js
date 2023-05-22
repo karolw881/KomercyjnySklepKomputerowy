@@ -38,7 +38,7 @@ const Zamowienia = () => {
                 <h1>Twoje zamówienia</h1>
                 <ul style={{display:"inline-block",textAlign:"left"}}>
                     {zamowienia?.map(zamowienie => (
-                        <li key={zamowienie.zamowienie_id}>Nr zamówienia: {zamowienie.zamowienie_id} Data zamówienia: {zamowienie.zamowienie_data}</li>
+                        <li key={zamowienie.zamowienie_id}>Nr zamówienia: {zamowienie.zamowienie_id} Data zamówienia: {zamowienie.zamowienie_data.slice(0, -14)}</li>
                     ))}
                 </ul>
             </div>

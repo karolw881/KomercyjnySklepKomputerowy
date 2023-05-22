@@ -10,15 +10,20 @@ import AddReview from "../../Components/AddReview";
 import AddToList from "../../Components/AddToList";
 import RatingAVG from "../../Components/RatingAVG";
 import RatingToStars from "../../Components/StarRating";
+import globalStore from "../../Store/GlobalStore";
 
 const ProductInfo = () => {
   const location = useLocation();
   const product = location.state;
   const productID = product.id_produktu;
+  const user = globalStore.getUser;
 
+  const [isLogged, setIsLogged] = useState(false);
   const [oceny, setOceny] = useState([]);
 
   useEffect(() => {
+    if(user)
+      setIsLogged(true);
     const getOceny = async () => {
       try {
         const produkt_id = product.id_produktu;
@@ -54,9 +59,12 @@ if (response.status === 200) {
       <Typography sx={{ textAlign: "center", marginTop: 6 }} variant="h4" gutterBottom>
         {product?.nazwa}
       </Typography>
-      <Typography sx={{textAlign:"center"}} variant="body2">
+      {isLogged && (
+          <Typography sx={{textAlign:"center"}} variant="body2">
           Dodaj do listy<AddToList productID={product?.id_produktu}/>
-      </Typography>
+          </Typography>
+      )}
+      
       <Typography sx={{ textAlign: "center", margin: 2 }} variant="h6" gutterBottom>
       <RatingAVG productID={product?.id_produktu}/>
         {"Cena: " + product?.cena + " zł"} 
@@ -80,7 +88,8 @@ if (response.status === 200) {
         {product?.specyfikacje}
       </Typography>
       <Typography sx={{ textAlign: "center", margin: 6 }} variant="h6" gutterBottom>
-      <AddReview productID={product?.id_produktu}/>
+        {isLogged && <AddReview productID={product?.id_produktu}/>}
+      
         <h1>Oceny użytkowników:</h1>
         {oceny?.map((ocena) => (
           <div style={{marginBottom:"5vh", display:"flex",flexDirection:"row", justifyContent:"center"}} key={ocena.id}>

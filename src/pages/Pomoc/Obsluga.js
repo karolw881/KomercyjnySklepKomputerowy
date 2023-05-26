@@ -30,7 +30,7 @@ const obslugaData = [
 const Obsluga = () => {
   return (
     <ThemeProvider theme={darkTheme}>
-    <Typography variant="h5" sx={{marginBottom:2}}>Obsluga</Typography>
+    <Typography variant="h5" sx={{marginBottom:2}}>Obsługa</Typography>
       {obslugaData.map((item, index) => (
         <Accordion key={index}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={`faq-content-${index}`} id={`faq-header-${index}`}>

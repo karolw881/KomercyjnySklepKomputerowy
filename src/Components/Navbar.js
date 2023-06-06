@@ -1,21 +1,18 @@
-import '../Index-css/Banner.css';
-import './Categories';
-import { TfiHeadphoneAlt } from 'react-icons/tfi'
-import { MdAccountCircle } from 'react-icons/md'
-import { HiClipboardList } from 'react-icons/hi'
-import { BsFillCartFill } from 'react-icons/bs'
-import { BsSearch} from 'react-icons/bs'
-import {FaIcon} from 'react-icons/fa'
-import logo from '../images/logo.png'
-import { Link } from 'react-router-dom';
-import { observer } from "mobx-react";
-import globalStore from '../Store/GlobalStore';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import { Button } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import IconButton from '@mui/material/IconButton';
+import { observer } from "mobx-react";
+import { useEffect, useState } from 'react';
+import { BsFillCartFill, BsSearch } from 'react-icons/bs';
+import { HiClipboardList } from 'react-icons/hi';
+import { MdAccountCircle } from 'react-icons/md';
+import { TfiHeadphoneAlt } from 'react-icons/tfi';
+import { Link, useNavigate } from 'react-router-dom';
+import '../Index-css/Banner.css';
+import globalStore from '../Store/GlobalStore';
+import logo from '../images/logo.png';
+import SearchBar from './SearchBar';
+import './Categories';
 
 
 const NavBar = observer(() => {
@@ -59,17 +56,13 @@ const NavBar = observer(() => {
 
             <div className="links">
 
-                <div className="searchbar">
-                <input
-                    type="text"
-                    placeholder="Czego szukasz?"
-                     />
-                     
+                
+                <div className="searchbar" style={{marginRight:"-50px"}}>
+                
+                     <SearchBar />
                 </div>  
 
-                <div className="search-icon">
-                    <BsSearch/>
-                </div>
+            
 
                 <Link to="/Pomoc">
                     <div className="flex-container">
